@@ -35,6 +35,7 @@
 		<members>Obra__c.VentasReferenciales__c</members>
 		<members>Obra__c.ZonaTerritorioComercial__c</members>
 		<members>Obra__c.direccionGeorreferenciada__c</members>
+		<members>Quote.Obra__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
@@ -42,7 +43,11 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
-		<members>Obra_P_gina_de_registro</members>
+		<members>Obra__c</members>
+		<name>CustomTab</name>
+	</types>
+	<types>
+		<members>ObraPaginaRegistro</members>
 		<name>FlexiPage</name>
 	</types>
 	<types>
@@ -62,6 +67,10 @@
 		<members>RTRegionNorte</members>
 		<members>RTRegionSur</members>
 		<name>Queue</name>
+	</types>
+	<types>
+		<members>Obra__c.ActualizarUbicacion</members>
+		<name>QuickAction</name>
 	</types>
 	<types>
 		<members>Obra__c.EstadoInvalidoCancelada</members>
