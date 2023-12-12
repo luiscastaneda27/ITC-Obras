@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ciudad__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Ciudad</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>(1 AND 2 AND 5) OR (1 AND 3 AND 4 AND 5)</booleanFilter>
+        <errorMessage>Debe elegir una ciudad válida</errorMessage>
+        <filterItems>
+            <field>udcDetallada__c.codigoUDC__c</field>
+            <operation>equals</operation>
+            <value>01/08</value>
+        </filterItems>
+        <filterItems>
+            <field>udcDetallada__c.tipoUDC__r.compania__c</field>
+            <operation>notEqual</operation>
+            <value></value>
+        </filterItems>
+        <filterItems>
+            <field>udcDetallada__c.tipoUDC__r.compania__c</field>
+            <operation>equals</operation>
+            <value></value>
+        </filterItems>
+        <filterItems>
+            <field>udcDetallada__c.tipoUDC__r.corporativa__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <filterItems>
+            <field>udcDetallada__c.tipoUDC__r.ambitoUDC__c</field>
+            <operation>equals</operation>
+            <value>Clientes</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>udcDetallada__c</referenceTo>
+    <relationshipLabel>Obra (Ciudad)</relationshipLabel>
+    <relationshipName>Obras4</relationshipName>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValorNoValido</fullName>
+    <active>true</active>
+    <description>El valor tiene que ser mayor a 0</description>
+    <errorConditionFormula>PotencialEstimadoVenta__c   &lt;=  0</errorConditionFormula>
+    <errorDisplayField>PotencialEstimadoVenta__c</errorDisplayField>
+    <errorMessage>El valor tiene que ser mayor a 0</errorMessage>
+</ValidationRule>
