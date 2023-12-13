@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CuentaInvalida</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+Cuenta__r.companias__c &lt;&gt; Obra__r.Compania__c,
+Cuenta__c  &lt;&gt; NULL 
+)</errorConditionFormula>
+    <errorMessage>La compañía de la cuenta no coincide con la compañía de la obra</errorMessage>
+</ValidationRule>

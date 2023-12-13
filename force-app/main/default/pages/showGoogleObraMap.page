@@ -1,0 +1,54 @@
+<apex:page standardController="Obra__c">
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyD7Eoypso7tMf4K-rvyOPYgoD8FC0X-HKE"></script>
+    <script type="text/javascript"> 
+
+    window.onload = function () {
+        var lati = {!Obra__c.CurrentLocation__Latitude__s};
+        console.log('lati: ' + lati);
+        var long = {!Obra__c.CurrentLocation__Longitude__s};
+        console.log('long: ' + long);
+        lati = ((lati != null) ? lati : Number('-1.4439661'));
+        long = ((long != null) ? long : Number('-78.6708783'));
+        var coord = { lat: lati, lng: long };
+        console.log('coord: ' + coord);
+
+        var mapOptions = {
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeControl: false,
+            disableDefaultUI: true,
+            scaleControl: true,
+            fullscreenControl: true,
+            streetViewControl: false,
+            center: {lat: {!Obra__c.CurrentLocation__Latitude__s }, lng: {!Obra__c.CurrentLocation__Longitude__s}}
+        };
+        map = new google.maps.Map(document.getElementById('map'),
+            mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: {lat: {!Obra__c.CurrentLocation__Latitude__s}, lng: {!Obra__c.CurrentLocation__Longitude__s}},
+            map: map
+        });
+
+    }
+    </script>
+
+    <style>
+        #container {
+            width: 100%;
+            height: 100%; 
+        }
+        #map {
+            font-family: Helvetica Neue, Arial, sans-serif !important;
+            font-size:10px;
+            line-height:small !important;
+            background:transparent;
+            width: 97vw;
+            height: 90vh;
+        }
+    </style>
+    <div id="container">
+        <div id="map">
+        </div>
+    </div>
+</apex:page>

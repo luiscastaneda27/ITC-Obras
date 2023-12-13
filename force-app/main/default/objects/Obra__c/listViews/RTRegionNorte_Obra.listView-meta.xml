@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RTRegionNorte_Obra</fullName>
+    <filterScope>Queue</filterScope>
+    <label>RT Región Norte</label>
+    <queue>RTRegionNorte</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

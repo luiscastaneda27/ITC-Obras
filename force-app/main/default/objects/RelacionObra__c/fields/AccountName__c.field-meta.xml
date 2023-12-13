@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AccountName__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( Cuenta__r.IsPersonAccount = true, Cuenta__r.FirstName + &apos; &apos; +Cuenta__r.LastName, Cuenta__r.Name)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Nombre de la Cuenta</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
