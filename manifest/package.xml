@@ -35,6 +35,7 @@
 		<members>Obra__c.VentasReferenciales__c</members>
 		<members>Obra__c.ZonaTerritorioComercial__c</members>
 		<members>Obra__c.direccionGeorreferenciada__c</members>
+		<members>RelacionObra__c.Obra__c</members>
 		<members>Quote.Obra__c</members>
 		<name>CustomField</name>
 	</types>
@@ -83,5 +84,10 @@
 		<members>Obra__c.ValorNoValido</members>
 		<name>ValidationRule</name>
 	</types>
+	<types>
+    	<members>Opportunity.Estimacion</members>
+    	<name>RecordType</name>
+	</types>
 	<version>58.0</version>
 </Package>
+
