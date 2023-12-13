@@ -35,12 +35,18 @@
 		<members>Obra__c.VentasReferenciales__c</members>
 		<members>Obra__c.ZonaTerritorioComercial__c</members>
 		<members>Obra__c.direccionGeorreferenciada__c</members>
-		<members>RelacionObra__c.Obra__c</members>
 		<members>Quote.Obra__c</members>
+		<members>RelacionObra__c.AccountName__c</members>
+		<members>RelacionObra__c.Cuenta__c</members>
+		<members>RelacionObra__c.LeadName__c</members>
+		<members>RelacionObra__c.Obra__c</members>
+		<members>RelacionObra__c.Prospecto__c</members>
+		<members>RelacionObra__c.Tipo__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
 		<members>Obra__c</members>
+		<members>RelacionObra__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
@@ -74,6 +80,11 @@
 		<name>QuickAction</name>
 	</types>
 	<types>
+		<members>Opportunity.Estimacion</members>
+		<members>Quote.EstimacionQuote</members>
+		<name>RecordType</name>
+	</types>
+	<types>
 		<members>Obra__c.EstadoInvalidoCancelada</members>
 		<members>Obra__c.EstadoInvalidoDeteccion</members>
 		<members>Obra__c.EstadoInvalidoEjecutada</members>
@@ -85,9 +96,8 @@
 		<name>ValidationRule</name>
 	</types>
 	<types>
-    	<members>Opportunity.Estimacion</members>
-    	<name>RecordType</name>
-	</types>
+		<members>OpportunityType</members>
+    	<name>StandardValueSet</name>
+    </types>
 	<version>58.0</version>
 </Package>
-
