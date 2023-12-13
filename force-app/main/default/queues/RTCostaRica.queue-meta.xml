@@ -3,9 +3,6 @@
     <doesSendEmailToMembers>false</doesSendEmailToMembers>
     <name>RT Costa Rica</name>
     <queueMembers>
-        <users>
-            <user>jenifer.maltez@intaco.dev</user>
-        </users>
     </queueMembers>
     <queueSobject>
         <sobjectType>Obra__c</sobjectType>
