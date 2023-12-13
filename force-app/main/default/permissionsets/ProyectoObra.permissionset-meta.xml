@@ -82,11 +82,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Quote.ObraCode__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Quote.Obra__c</field>
         <readable>true</readable>
@@ -162,10 +157,6 @@
     </objectPermissions>
     <recordTypeVisibilities>
         <recordType>Opportunity.Estimacion</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Quote.EstimacionQuote</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>

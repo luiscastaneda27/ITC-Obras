@@ -59,6 +59,7 @@
 	</types>
 	<types>
 		<members>Obra__c-Formato Obras</members>
+		<members>RelacionObra__c-Formato Relación Intaco</members>
 		<name>Layout</name>
 	</types>
 	<types>
@@ -81,7 +82,6 @@
 	</types>
 	<types>
 		<members>Opportunity.Estimacion</members>
-		<members>Quote.EstimacionQuote</members>
 		<name>RecordType</name>
 	</types>
 	<types>
