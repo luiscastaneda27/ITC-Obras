@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Draft</fullName>
+        <default>true</default>
+        <label>Borrador</label>
+        <allowEmail>true</allowEmail>
+    </standardValue>
+    <standardValue>
+        <fullName>Pendiente Aprobación</fullName>
+        <default>false</default>
+        <label>Pendiente Aprobación</label>
+        <allowEmail>false</allowEmail>
+    </standardValue>
+    <standardValue>
+        <fullName>En proceso</fullName>
+        <default>false</default>
+        <label>En proceso</label>
+        <allowEmail>true</allowEmail>
+    </standardValue>
+    <standardValue>
+        <fullName>Accepted</fullName>
+        <default>false</default>
+        <label>Aceptada</label>
+        <allowEmail>true</allowEmail>
+    </standardValue>
+    <standardValue>
+        <fullName>Presupuesto</fullName>
+        <default>false</default>
+        <label>Presupuesto</label>
+        <allowEmail>false</allowEmail>
+    </standardValue>
+    <standardValue>
+        <fullName>Aprobada</fullName>
+        <default>false</default>
+        <label>Aprobada</label>
+        <allowEmail>false</allowEmail>
+    </standardValue>
+    <standardValue>
+        <fullName>Cancelada</fullName>
+        <default>false</default>
+        <label>Cancelada</label>
+        <allowEmail>false</allowEmail>
+    </standardValue>
+</StandardValueSet>
