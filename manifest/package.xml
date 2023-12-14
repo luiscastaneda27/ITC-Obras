@@ -85,6 +85,12 @@
 		<name>RecordType</name>
 	</types>
 	<types>
+		<members>OpportunityType</members>
+		<name>StandardValueSet</name>
+	</types>
+	<types>
+		<members>Obra__c.CampoNoEditableCompania</members>
+		<members>Obra__c.CampoNoEditableUsuarioValidador</members>
 		<members>Obra__c.EstadoInvalidoCancelada</members>
 		<members>Obra__c.EstadoInvalidoDeteccion</members>
 		<members>Obra__c.EstadoInvalidoEjecutada</members>
@@ -95,9 +101,5 @@
 		<members>Obra__c.ValorNoValido</members>
 		<name>ValidationRule</name>
 	</types>
-	<types>
-		<members>OpportunityType</members>
-    	<name>StandardValueSet</name>
-    </types>
 	<version>58.0</version>
 </Package>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CampoNoEditableCompania</fullName>
+    <active>true</active>
+    <description>Campo Compañia no puede editarse, luego de crear el registro.</description>
+    <errorConditionFormula>AND(
+NOT(ISNEW()),
+PRIORVALUE(Compania__c ) &lt;&gt; Compania__c
+)</errorConditionFormula>
+    <errorDisplayField>Compania__c</errorDisplayField>
+    <errorMessage>El campo no puede ser editable, luego de crear el registro</errorMessage>
+</ValidationRule>
