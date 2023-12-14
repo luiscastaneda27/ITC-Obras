@@ -172,7 +172,7 @@
         <locationX>176</locationX>
         <locationY>1298</locationY>
         <connector>
-            <targetReference>Create_Quote</targetReference>
+            <targetReference>getContacts</targetReference>
         </connector>
         <inputAssignments>
             <field>AccountId</field>
@@ -247,7 +247,13 @@
         <name>Create_Quote</name>
         <label>Create Quote</label>
         <locationX>176</locationX>
-        <locationY>1406</locationY>
+        <locationY>1514</locationY>
+        <inputAssignments>
+            <field>ContactId</field>
+            <value>
+                <elementReference>getContacts.Id</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <field>ExpirationDate</field>
             <value>
@@ -306,6 +312,27 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>GenericAccountObras__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>getContacts</name>
+        <label>getContacts</label>
+        <locationX>176</locationX>
+        <locationY>1406</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Quote</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>RecordISelected</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>

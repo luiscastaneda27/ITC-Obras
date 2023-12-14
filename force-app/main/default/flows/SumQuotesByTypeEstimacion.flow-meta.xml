@@ -50,35 +50,10 @@
         <connector>
             <targetReference>update_obra</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>RecordTypeId</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>012Ou0000008Ft7IAE</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Status</field>
-            <operator>NotEqualTo</operator>
-            <value>
-                <stringValue>Cancelada</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>TotalPrice</field>
-            <operator>GreaterThan</operator>
-            <value>
-                <numberValue>0.0</numberValue>
-            </value>
-        </filters>
-        <filters>
-            <field>TotalPrice</field>
-            <operator>IsChanged</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
+        <filterFormula>AND({!$Record.RecordType.DeveloperName} = &apos;EstimacionQuote&apos;,
+ISPICKVAL({!$Record.Status}, &apos;Cancelada&apos;),
+ISCHANGED({!$Record.TotalPrice}),
+{!$Record.TotalPrice} &gt; 0 )</filterFormula>
         <object>Quote</object>
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
