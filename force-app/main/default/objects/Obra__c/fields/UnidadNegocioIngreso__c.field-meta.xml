@@ -3,8 +3,9 @@
     <fullName>UnidadNegocioIngreso__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>Unidad de negocio de ingreso</label>
+    <label>Unidad de Negocio de Ingreso</label>
     <referenceTo>unidadNegocioIngreso__c</referenceTo>
+    <relationshipLabel>Obra</relationshipLabel>
     <relationshipName>Obras</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>

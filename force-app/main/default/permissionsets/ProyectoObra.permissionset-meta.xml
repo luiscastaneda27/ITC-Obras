@@ -3,11 +3,6 @@
     <description>Conjunto de permisos Custom para desarrollo de Intaco</description>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Obra__c.Bodega__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Obra__c.CodigoObra__c</field>
         <readable>true</readable>
     </fieldPermissions>
