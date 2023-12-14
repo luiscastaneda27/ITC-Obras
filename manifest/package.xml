@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-        <members>Opportunity_handler</members>
-        <name>ApexClass</name>
-    </types>
-	<types>
 		<members>showGoogleObraMap</members>
 		<name>ApexPage</name>
 	</types>
@@ -46,16 +42,11 @@
 		<members>RelacionObra__c.Obra__c</members>
 		<members>RelacionObra__c.Prospecto__c</members>
 		<members>RelacionObra__c.Tipo__c</members>
-		<members>GenericAccountObras__mdt.AccountCode__c</members>
-        <members>Quote.ObraCode__c</members>
-        <members>Quote.Obra__c</members>
-        <members>RelacionObra__c.AccountName__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
 		<members>Obra__c</members>
 		<members>RelacionObra__c</members>
-		<members>GenericAccountObras__mdt</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
@@ -64,19 +55,11 @@
 	</types>
 	<types>
 		<members>ObraPaginaRegistro</members>
-		<members>QuoteLighningPageEstimacion</members>
 		<name>FlexiPage</name>
 	</types>
 	<types>
-        <members>CreateQuoteFromObras</members>
-        <members>SumQuotesByTypeEstimacion</members>
-        <name>Flow</name>
-    </types>
-	<types>
 		<members>Obra__c-Formato Obras</members>
 		<members>RelacionObra__c-Formato Relación Intaco</members>
-		<members>Opportunity-Estimación Layout</members>
-        <members>Quote-Estimación Layout</members>
 		<name>Layout</name>
 	</types>
 	<types>
@@ -95,17 +78,14 @@
 	</types>
 	<types>
 		<members>Obra__c.ActualizarUbicacion</members>
-		<members>Obra__c.Crear_Estimacion</members>
 		<name>QuickAction</name>
 	</types>
 	<types>
 		<members>Opportunity.Estimacion</members>
-        <members>Quote.EstimacionQuote</members>
 		<name>RecordType</name>
 	</types>
 	<types>
 		<members>OpportunityType</members>
-		<members>QuoteStatus</members>
 		<name>StandardValueSet</name>
 	</types>
 	<types>
@@ -119,9 +99,6 @@
 		<members>Obra__c.EstadoInvalidoLevantamientoValidacion</members>
 		<members>Obra__c.FechaInvalida</members>
 		<members>Obra__c.ValorNoValido</members>
-		<members>Quote.NoEditarCotizacionEstimacion</members>
-        <members>RelacionObra__c.CuentaInvalida</members>
-        <members>RelacionObra__c.RelacionInvalida</members>
 		<name>ValidationRule</name>
 	</types>
 	<version>58.0</version>
