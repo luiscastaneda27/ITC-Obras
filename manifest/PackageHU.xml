@@ -1,60 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>Opportunity_handler</members>
-        <name>ApexClass</name>
-    </types>
-    <types>
-        <members>GenericAccountObras__mdt.AccountCode__c</members>
-        <members>Quote.ObraCode__c</members>
-        <members>Quote.Obra__c</members>
-        <members>RelacionObra__c.AccountName__c</members>
-        <name>CustomField</name>
-    </types>
-    <types>
-        <members>GenericAccountObras.CR</members>
-        <name>CustomMetadata</name>
-    </types>
-    <types>
-        <members>GenericAccountObras__mdt</members>
-        <name>CustomObject</name>
-    </types>
-    <types>
-        <members>QuoteLighningPageEstimacion</members>
-        <name>FlexiPage</name>
-    </types>
-    <types>
         <members>CreateQuoteFromObras</members>
         <members>SumQuotesByTypeEstimacion</members>
         <name>Flow</name>
     </types>
     <types>
-        <members>Opportunity-Estimación Layout</members>
         <members>Quote-Estimación Layout</members>
         <name>Layout</name>
     </types>
     <types>
-        <members>ProyectoObra</members>
-        <name>PermissionSet</name>
-    </types>
-    <types>
-        <members>Obra__c.Crear_Estimacion</members>
-        <name>QuickAction</name>
-    </types>
-    <types>
-        <members>Opportunity.Estimacion</members>
-        <members>Quote.EstimacionQuote</members>
-        <name>RecordType</name>
-    </types>
-    <types>
         <members>Quote.NoEditarCotizacionEstimacion</members>
-        <members>RelacionObra__c.CuentaInvalida</members>
-        <members>RelacionObra__c.RelacionInvalida</members>
         <name>ValidationRule</name>
-    </types>
-    <types>
-        <members>QuoteStatus</members>
-        <name>StandardValueSet</name>
     </types>
     <version>58.0</version>
 </Package>
