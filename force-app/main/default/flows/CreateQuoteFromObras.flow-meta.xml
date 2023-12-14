@@ -139,11 +139,6 @@
     </dynamicChoiceSets>
     <environments>Default</environments>
     <formulas>
-        <name>CodGenericAccount</name>
-        <dataType>String</dataType>
-        <expression>{!$Label.CuentaGenericaCR}</expression>
-    </formulas>
-    <formulas>
         <name>OppName</name>
         <dataType>String</dataType>
         <expression>IF(ISBLANK({!SearchAccounts.selectedChoiceValues}), 
@@ -263,6 +258,12 @@
             <field>Name</field>
             <value>
                 <elementReference>OppName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ObraCode__c</field>
+            <value>
+                <elementReference>GetInfoObra.CodigoObra__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
