@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NoEditarCotizacionEstimacion</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( RecordType.DeveloperName = &apos;EstimacionQuote&apos;,
+OR ( TEXT(Status) = &apos;Aprobada&apos;, TEXT(Status) = &apos;Cancelada&apos;)
+)</errorConditionFormula>
+    <errorMessage>No es posible modificar la cotización en el estado actual</errorMessage>
+</ValidationRule>

@@ -53,8 +53,8 @@
         <name>ValidationRule</name>
     </types>
     <types>
-		<members>QuoteStatus</members>
-		<name>StandardValueSet</name>
-	</types>
+        <members>QuoteStatus</members>
+        <name>StandardValueSet</name>
+    </types>
     <version>58.0</version>
 </Package>
