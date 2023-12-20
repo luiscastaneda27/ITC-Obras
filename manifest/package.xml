@@ -11,7 +11,7 @@
     <types>
         <members>Obra__c.Bodega__c</members>
         <members>Obra__c.Ciudad__c</members>
-        <members>Obra__c.CodigoObra__c</members>
+        <members>Obra__c.CodigoObras__c</members>
         <members>Obra__c.Compania__c</members>
         <members>Obra__c.CurrentLocation__c</members>
         <members>Obra__c.DetalleObra__c</members>
@@ -40,6 +40,14 @@
         <members>Obra__c.ZonaTerritorioComercial__c</members>
         <members>Obra__c.direccionGeorreferenciada__c</members>
         <members>Quote.Obra__c</members>
+        <members>ReferenceSales__c.Amount__c</members>
+        <members>ReferenceSales__c.Company__c</members>
+        <members>ReferenceSales__c.Date__c</members>
+        <members>ReferenceSales__c.Obra__c</members>
+        <members>ReferenceSales__c.Supplier__c</members>
+        <members>ReferenceSales__c.ProductCode__c</members>
+        <members>ReferenceSales__c.ProductClassification__c</members>
+        <members>ReferenceSales__c.ProductSubclassification__c</members>
         <members>RelacionObra__c.AccountName__c</members>
         <members>RelacionObra__c.Cuenta__c</members>
         <members>RelacionObra__c.LeadName__c</members>
@@ -57,7 +65,8 @@
         <name>CustomMetadata</name>
     </types>
     <types>
-        <members>Obra__c</members>
+        <members>Obra__c</members>     
+        <members>ReferenceSales__c</members>
         <members>RelacionObra__c</members>
         <members>GenericAccountObras__mdt</members>
         <name>CustomObject</name>
@@ -74,10 +83,12 @@
     <types>
         <members>CreateQuoteFromObras</members>
         <members>SumQuotesByTypeEstimacion</members>
+        <members>SumSalesReferencial</members>
         <name>Flow</name>
     </types>
     <types>
-        <members>Obra__c-Formato Obras</members>
+        <members>Obra__c-Formato Obras</members>    
+        <members>ReferenceSales__c-Ventas Referenciales Layout</members>
         <members>RelacionObra__c-Formato Relación Intaco</members>
         <members>Opportunity-Estimación Layout</members>
         <members>Quote-Estimación Layout</members>
@@ -124,6 +135,8 @@
         <members>Obra__c.FechaInvalida</members>
         <members>Obra__c.ValorNoValido</members>
         <members>Quote.NoEditarCotizacionEstimacion</members>
+        <members>ReferenceSales__c.AmountLess</members>
+        <members>ReferenceSales__c.CompanyByObra</members>      
         <members>RelacionObra__c.CuentaInvalida</members>
         <members>RelacionObra__c.RelacionInvalida</members>
         <name>ValidationRule</name>
