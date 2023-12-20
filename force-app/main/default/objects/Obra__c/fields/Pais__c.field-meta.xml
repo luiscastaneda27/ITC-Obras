@@ -3,10 +3,11 @@
     <fullName>Pais__c</fullName>
     <deleteConstraint>Restrict</deleteConstraint>
     <externalId>false</externalId>
+    <inlineHelpText>01/06</inlineHelpText>
     <label>Pais</label>
     <lookupFilter>
         <active>true</active>
-        <booleanFilter>(1 AND 2) OR (3)</booleanFilter>
+        <booleanFilter>(1 AND 2 AND 4 AND 5) OR (3)</booleanFilter>
         <filterItems>
             <field>$User.codigoCompania__c</field>
             <operation>equals</operation>
@@ -21,6 +22,16 @@
             <field>$Profile.Name</field>
             <operation>equals</operation>
             <value>System Administrator</value>
+        </filterItems>
+        <filterItems>
+            <field>udcDetallada__c.codigoUDC__c</field>
+            <operation>equals</operation>
+            <value>01/06</value>
+        </filterItems>
+        <filterItems>
+            <field>udcDetallada__c.tipoUDC__r.ambitoUDC__c</field>
+            <operation>equals</operation>
+            <value>Clientes</value>
         </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>

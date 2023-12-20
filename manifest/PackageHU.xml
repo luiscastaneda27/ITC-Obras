@@ -1,12 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>
-        <members>ProyectoObra</members>
-        <name>PermissionSet</name>
-    </types>
-    <types>
-        <members>Quote-Estimación Layout</members>
-        <name>Layout</name>
-    </types>
-    <version>58.0</version>
+	<types>
+		<members>Obra__c.CodigoObras__c</members>
+		<members>Obra__c.Compania__c</members>
+		<members>Obra__c.Moneda__c</members>
+		<members>Obra__c.Pais__c</members>
+		<members>Obra__c.PotencialEstimadoVenta__c</members>
+		<members>Obra__c.Provincia__c</members>
+		<members>Obra__c.Region__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+		<members>ObraPaginaRegistro</members>
+		<name>FlexiPage</name>
+	</types>
+	<types>
+		<members>CreateQuoteFromObras</members>
+		<name>Flow</name>
+	</types>
+	<types>
+		<members>CreateQuoteFromObras</members>
+		<name>FlowDefinition</name>
+	</types>
+	<types>
+		<members>Obra__c-Formato Obras</members>
+		<name>Layout</name>
+	</types>
+	<types>
+		<members>currentLocationLWC</members>
+		<name>LightningComponentBundle</name>
+	</types>
+	<types>
+		<members>ProyectoObra</members>
+		<name>PermissionSet</name>
+	</types>
+	<types>
+		<members>Obra__c.CampoNoEditablePotencialEstimadoVenta</members>
+		<name>ValidationRule</name>
+	</types>
+	<version>58.0</version>
 </Package>

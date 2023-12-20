@@ -1,0 +1,148 @@
+<!--
+  @description       : 
+  @author            : Diego Jacanamijoy -> diegojacanamijoy@gmail.com
+  @group             : 
+  @last modified on  : 13/06/2023
+  @last modified by  : Omar Moya -> omar.moya@intellectsystem.net
+-->
+<template>
+
+    <!-- Using the if:true directive we will conditionaly show/hide the spinner -->
+    <div if:true={isLoading} style="height: 200px; position:relative">
+        <lightning-spinner variant="base" size="medium"></lightning-spinner>
+    </div>
+
+    <lightning-card>
+        <div if:false={isLoading} class="slds-p-around_small">
+
+            <div class="slds-scrollable">
+                <div class="slds-text-longform" style="width:100%">
+                    <lightning-map map-markers={lstMarkers} location={address} center={lstMarkers} onmarkerselect={handleMarkerSelect}
+                    selected-marker-value={selectedMarkerValue}> zoom-level={zoomlevel}></lightning-map>
+                </div>
+            </div>
+            
+            <lightning-tabset active-tab-value="two">
+                <lightning-tab label="Dirección" value="one">
+                    <legend class="slds-form-element__label slds-form-element__legend">Búsqueda por dirección</legend>
+                    <div>
+                        
+                        <lightning-input-address read-only label="Dirección" 
+                        street-label="Calle" city-label="Ciudad"
+                        province-label="Provincia" postal-code-label="Código Postal" country-label="País" street={street}
+                        city={city} province={province} postal-code={postalCode} country={country}
+                            onchange={addressInputChange} show-address-lookup >
+                        </lightning-input-address>
+                        
+                        <lightning-layout class="c-container" multiple-rows horizontal-align="space">
+                            <lightning-layout-item size="6">
+                                <div class="slds-col slds-size_6-of-12" align="center">
+                                    <lightning-button disabled label="Location" icon-name="utility:checkin"
+                                        alternative-text="Get Current Location" variant="Success" title="Get Current Location"
+                                        onclick={handleClick}>
+                                    </lightning-button>
+                                    <br /><br />
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6">
+                                <div class="slds-col slds-size_6-of-12">
+                                    <lightning-button variant="brand" label="Guardar" onclick={handlefirstTabButtonClick}>
+                                    </lightning-button>
+                                    <br /><br />
+                                </div>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </div>
+                            
+                
+                </lightning-tab>
+                <lightning-tab label="Geolocalización" value="two">
+                    <legend class="slds-form-element__label slds-form-element__legend">Búsqueda por GPS</legend>
+                    <br /><br />
+                    <div>
+                        <lightning-layout class="c-container" multiple-rows horizontal-align="space">
+                            <lightning-layout-item size="12">
+                                <div class="slds-col slds-size_12-of-12" label="Cordenadas Actuales">
+                                    <div class="slds-grid">
+        
+                                        <lightning-input class="slds-col slds-size_1-of-2" label="Latitud" value={latitude}
+                                            data-latitud={latitude} onchange={handleChangeLatitude} required>
+        
+                                        </lightning-input>
+                                        <lightning-input class="slds-col slds-size_1-of-2" label="Longitud" value={longitude}
+                                            data-longitud={longitude} onchange={handleChangeLongitude} required>
+        
+                                        </lightning-input>
+                                    </div>
+                                    <br /><br />
+                                </div>
+                            </lightning-layout-item>
+        
+                            <lightning-layout-item size="6">
+                                <div class="slds-col slds-size_6-of-12" align="center">
+                                    <lightning-button label="Location" icon-name="utility:checkin"
+                                        alternative-text="Get Current Location" variant="Success" title="Get Current Location"
+                                        onclick={handleClick}>
+                                    </lightning-button>
+                                    <br /><br />
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6">
+                                <div class="slds-col slds-size_6-of-12">
+                                    <lightning-button variant="brand" label="Guardar" onclick={handleSecondTabButtonClick}
+                                        disabled={showSaveButon}>
+                                    </lightning-button>
+                                    <br /><br />
+                                </div>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </div>
+
+
+
+                </lightning-tab>
+            </lightning-tabset>
+            
+            <br></br>
+
+            <!-- <div>
+                <lightning-layout class="c-container" multiple-rows horizontal-align="space">
+                    <lightning-layout-item size="12">
+                        <div class="slds-col slds-size_12-of-12" label="Cordenadas Actuales">
+                            <div class="slds-grid">
+                                <lightning-input class="slds-col slds-size_1-of-2" label="Latitud" value={latitude}
+                                    data-latitud={latitude} onchange={handleChangeLatitude} required>
+
+                                </lightning-input>
+                                <lightning-input class="slds-col slds-size_1-of-2" label="Longitud" value={longitude}
+                                    data-longitud={longitude} onchange={handleChangeLongitude} required>
+
+                                </lightning-input>
+                            </div>
+                            <br /><br />
+                        </div>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="6">
+                        <div class="slds-col slds-size_6-of-12" align="center">
+                            <lightning-button label="Location" icon-name="utility:checkin"
+                                alternative-text="Get Current Location" variant="Success" title="Get Current Location"
+                                onclick={handleClick}>
+                            </lightning-button>
+                            <br /><br />
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <div class="slds-col slds-size_6-of-12">
+                            <lightning-button variant="brand" label="Guardar" onclick={toUpdateRecord}
+                                disabled={showSaveButon}>
+                            </lightning-button>
+                            <br /><br />
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div> -->
+
+        </div>
+    </lightning-card>
+</template>

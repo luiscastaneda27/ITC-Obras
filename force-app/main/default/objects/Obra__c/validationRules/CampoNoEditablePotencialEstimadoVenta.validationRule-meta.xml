@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CampoNoEditablePotencialEstimadoVenta</fullName>
+    <active>true</active>
+    <description>El Campo Potencial estimado de venta no puede editarse, luego de crear el registro.</description>
+    <errorConditionFormula>AND(
+NOT(ISNEW()),
+PRIORVALUE( PotencialEstimadoVenta__c  ) &lt;&gt; PotencialEstimadoVenta__c
+)</errorConditionFormula>
+    <errorDisplayField>PotencialEstimadoVenta__c</errorDisplayField>
+    <errorMessage>El campo no puede ser editable, cuando ya tiene un valor existente</errorMessage>
+</ValidationRule>
