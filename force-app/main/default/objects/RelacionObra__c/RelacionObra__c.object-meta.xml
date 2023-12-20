@@ -155,8 +155,9 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Relación Obra</label>
     <nameField>
-        <label>Nombre de la Obra</label>
-        <type>Text</type>
+        <displayFormat>RO-{0000}</displayFormat>
+        <label>Número de la Obra</label>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Relación  Obra</pluralLabel>
     <searchLayouts></searchLayouts>

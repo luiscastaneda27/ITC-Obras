@@ -125,6 +125,11 @@
         <field>RelacionObra__c.Tipo__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>RelacionObra__c.TipoRelacion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Proyecto de Obra</label>
     <license>Salesforce</license>
