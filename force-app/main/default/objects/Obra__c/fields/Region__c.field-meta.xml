@@ -3,7 +3,6 @@
     <fullName>Region__c</fullName>
     <deleteConstraint>Restrict</deleteConstraint>
     <externalId>false</externalId>
-    <inlineHelpText>01/11</inlineHelpText>
     <label>Región</label>
     <lookupFilter>
         <active>true</active>

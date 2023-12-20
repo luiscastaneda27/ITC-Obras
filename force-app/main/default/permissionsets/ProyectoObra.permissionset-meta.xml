@@ -187,6 +187,10 @@
         <object>RelacionObra__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <pageAccesses>
+        <apexPage>showGoogleObraMap</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Opportunity.Estimacion</recordType>
         <visible>true</visible>

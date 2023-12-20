@@ -3,7 +3,6 @@
     <fullName>Pais__c</fullName>
     <deleteConstraint>Restrict</deleteConstraint>
     <externalId>false</externalId>
-    <inlineHelpText>01/06</inlineHelpText>
     <label>Pais</label>
     <lookupFilter>
         <active>true</active>
@@ -26,12 +25,12 @@
         <filterItems>
             <field>udcDetallada__c.codigoUDC__c</field>
             <operation>equals</operation>
-            <value>01/06</value>
+            <value>00/CN</value>
         </filterItems>
         <filterItems>
             <field>udcDetallada__c.tipoUDC__r.ambitoUDC__c</field>
             <operation>equals</operation>
-            <value>Clientes</value>
+            <value>Contactos</value>
         </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>
