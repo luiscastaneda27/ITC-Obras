@@ -269,7 +269,7 @@
         <inputAssignments>
             <field>ObraCode__c</field>
             <value>
-                <elementReference>GetInfoObra.CodigoObra__c</elementReference>
+                <elementReference>GetInfoObra.CodigoObras__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>

@@ -19,6 +19,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
+                <field>Compania__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
@@ -38,16 +42,8 @@
                 <field>M2Piso__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>M2Pared__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>VentasDirectas__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>VentasIndirectas__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -57,7 +53,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CodigoObra__c</field>
+                <field>CodigoObras__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -76,8 +72,16 @@
                 <field>ParticipacionVentas__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>EstadoObra__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>M2Pared__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>VentasIndirectas__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -121,10 +125,6 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Bodega__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Compania__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -264,9 +264,19 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>TipoRelacion__c</fields>
         <fields>Tipo__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>RelacionObra__c.Obra__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <fields>NAME</fields>
+        <fields>ProductCode__c</fields>
+        <fields>ProductClassification__c</fields>
+        <fields>ProductSubclassification__c</fields>
+        <fields>Amount__c</fields>
+        <relatedList>ReferenceSales__c.Obra__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>

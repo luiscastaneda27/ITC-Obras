@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProductClassification__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Clasificación Producto</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>(1 AND 2 AND 3 AND 6) OR (1 AND 4 AND 5 AND 6)</booleanFilter>
+        <errorMessage>Debe elegir una Clasificación de productos válida.</errorMessage>
+        <filterItems>
+            <field>udcDetallada__c.codigoUDC__c</field>
+            <operation>equals</operation>
+            <value>41/S4</value>
+        </filterItems>
+        <filterItems>
+            <field>$Source.Company__c</field>
+            <operation>equals</operation>
+            <valueField>udcDetallada__c.tipoUDC__r.compania__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>udcDetallada__c.tipoUDC__r.compania__c</field>
+            <operation>notEqual</operation>
+            <value></value>
+        </filterItems>
+        <filterItems>
+            <field>udcDetallada__c.tipoUDC__r.compania__c</field>
+            <operation>equals</operation>
+            <value></value>
+        </filterItems>
+        <filterItems>
+            <field>udcDetallada__c.tipoUDC__r.corporativa__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <filterItems>
+            <field>udcDetallada__c.tipoUDC__r.ambitoUDC__c</field>
+            <operation>equals</operation>
+            <value>Productos</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>udcDetallada__c</referenceTo>
+    <relationshipLabel>Ventas Referenciales</relationshipLabel>
+    <relationshipName>Ventas_Referenciales</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

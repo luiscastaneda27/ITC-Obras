@@ -1,16 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>SumQuotesByTypeEstimacion</members>
+        <members>CreateQuoteFromObras</members>
+        <members>SumSalesReferencial</members>
         <name>Flow</name>
     </types>
     <types>
-        <members>Obra__c.PotencialEstimadoVenta__c</members>
+        <members>Obra__c.CodigoObras__c</members>
+        <members>Obra__c.VentasReferenciales__c</members>
+        <members>Obra__c.TipoRelacion__c</members>
+        <members>ReferenceSales__c.Amount__c</members>
+        <members>ReferenceSales__c.Company__c</members>
+        <members>ReferenceSales__c.Date__c</members>
+        <members>ReferenceSales__c.Obra__c</members>
+        <members>ReferenceSales__c.Supplier__c</members>
+        <members>ReferenceSales__c.ProductCode__c</members>
+        <members>ReferenceSales__c.ProductClassification__c</members>
+        <members>ReferenceSales__c.ProductSubclassification__c</members>
         <name>CustomField</name>
     </types>
+    <types>    
+        <members>ReferenceSales__c</members>
+        <name>CustomObject</name>
+    </types>
     <types>
+        <members>ReferenceSales__c-Ventas Referenciales Layout</members>
         <members>Obra__c-Formato Obras</members>
+        <members>Quote-Estimación Layout</members>
         <name>Layout</name>
+    </types>
+    <types>
+        <members>ProyectoObra</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>ReferenceSales__c.AmountLess</members>
+        <members>ReferenceSales__c.CompanyByObra</members>
+        <name>ValidationRule</name>
     </types>
     <version>58.0</version>
 </Package>
