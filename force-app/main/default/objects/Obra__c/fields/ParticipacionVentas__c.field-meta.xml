@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ParticipacionVentas__c</fullName>
     <externalId>false</externalId>
-    <formula>VentasDirectas__c  +  VentasIndirectas__c  +  VentasReferenciales__c  /  PotencialEstimadoVenta__c</formula>
+    <formula>( VentasDirectas__c  +  VentasIndirectas__c  +  VentasReferenciales__c )  /  ( PotencialEstimadoVenta__c )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Participación de Ventas</label>
     <precision>18</precision>
