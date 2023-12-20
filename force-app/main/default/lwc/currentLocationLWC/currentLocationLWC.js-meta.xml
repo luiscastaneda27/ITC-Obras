@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__RecordAction</target>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordAction">
+            <actionType>ScreenAction</actionType>
+        </targetConfig>
+
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="latitude" type="String" label="Latitud"></property>
+            <property name="longitude" type="String" label="Longitud"></property>
+            <property name="recordid" type="String" label="Record Id"></property>
+            <property name="showSaveButon" type="Boolean" label="Mostrar botón guardar"></property>
+        </targetConfig>
+
+        <targetConfig targets="lightning__RecordPage">
+            <supportedFormFactors>
+                <supportedFormFactor type="Small" />
+                <supportedFormFactor type="Large" />
+            </supportedFormFactors>
+        </targetConfig>
+    </targetConfigs>
+    
+</LightningComponentBundle>
