@@ -32,11 +32,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Obra__c.EstadoObra__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Obra__c.Lead__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -170,6 +165,11 @@
         <field>RelacionObra__c.Tipo__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>RelacionObra__c.TipoRelacion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Proyecto de Obra</label>
     <license>Salesforce</license>
@@ -236,6 +236,10 @@
         <object>RelacionObra__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <pageAccesses>
+        <apexPage>showGoogleObraMap</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Opportunity.Estimacion</recordType>
         <visible>true</visible>

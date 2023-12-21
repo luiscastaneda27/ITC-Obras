@@ -3,7 +3,6 @@
     <fullName>Provincia__c</fullName>
     <deleteConstraint>Restrict</deleteConstraint>
     <externalId>false</externalId>
-    <inlineHelpText>01/07</inlineHelpText>
     <label>Provincia</label>
     <lookupFilter>
         <active>true</active>
