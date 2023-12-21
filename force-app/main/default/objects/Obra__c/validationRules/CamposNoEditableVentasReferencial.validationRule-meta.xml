@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CamposNoEditableVentasReferencial</fullName>
+    <active>true</active>
+    <description>El Campo Ventas Directas no puede editarse, luego de crear el registro.</description>
+    <errorConditionFormula>AND(
+NOT(ISNEW()),
+PRIORVALUE(   VentasReferenciales__c    ) &lt;&gt; VentasReferenciales__c
+)</errorConditionFormula>
+    <errorDisplayField>VentasReferenciales__c</errorDisplayField>
+    <errorMessage>El campo no puede ser editable, cuando ya tiene un valor existente</errorMessage>
+</ValidationRule>
