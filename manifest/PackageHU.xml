@@ -38,9 +38,6 @@
 	<types>
 		<members>Lead.IngresoNumeroIdentificacionFiscal</members>
 		<members>Lead.IngresoNumeroIdentificacionFiscalNatural</members>
-		<members>Obra__c.CampoNoEditableVentasIndirectas</members>
-		<members>Obra__c.CamposNoEditableVentasDirectas</members>
-		<members>Obra__c.CamposNoEditableVentasReferencial</members>
 		<name>ValidationRule</name>
 	</types>
 	<version>58.0</version>

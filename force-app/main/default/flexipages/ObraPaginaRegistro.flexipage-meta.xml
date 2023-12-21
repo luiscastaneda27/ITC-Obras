@@ -341,30 +341,51 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.VentasDirectas__c</fieldItem>
                 <identifier>RecordVentasDirectas_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.VentasDirectas__c}</leftValue>
+                        <operator>GT</operator>
+                        <rightValue>0</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.VentasIndirectas__c</fieldItem>
                 <identifier>RecordVentasIndirectas_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.VentasIndirectas__c}</leftValue>
+                        <operator>GT</operator>
+                        <rightValue>0</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.VentasReferenciales__c</fieldItem>
                 <identifier>RecordVentasReferenciales_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.VentasReferenciales__c}</leftValue>
+                        <operator>GT</operator>
+                        <rightValue>0</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-77a06c7b-05ba-464e-bf66-8cdf080d06fb</name>
