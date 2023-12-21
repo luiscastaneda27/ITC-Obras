@@ -102,7 +102,7 @@
             <targetReference>getAllQuotes</targetReference>
         </connector>
         <filterFormula>AND({!$Record.RecordType.DeveloperName} = &apos;EstimacionQuote&apos;,
-ISPICKVAL({!$Record.Status}, &apos;Cancelada&apos;),
+NOT(ISPICKVAL({!$Record.Status}, &apos;Cancelada&apos;)),
 ISCHANGED({!$Record.TotalPrice}),
 {!$Record.TotalPrice} &gt; 0 )</filterFormula>
         <object>Quote</object>

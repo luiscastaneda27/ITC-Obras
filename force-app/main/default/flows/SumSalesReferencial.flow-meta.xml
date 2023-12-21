@@ -5,7 +5,7 @@
         <name>Sum</name>
         <label>Sum</label>
         <locationX>264</locationX>
-        <locationY>647</locationY>
+        <locationY>539</locationY>
         <assignmentItems>
             <assignToReference>Total</assignToReference>
             <operator>Add</operator>
@@ -24,7 +24,7 @@
         <name>SumAmount</name>
         <label>SumAmount</label>
         <locationX>176</locationX>
-        <locationY>539</locationY>
+        <locationY>431</locationY>
         <collectionReference>getAllSalesRefencial</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -57,7 +57,7 @@
         <name>getAllSalesRefencial</name>
         <label>getAllSalesRefencial</label>
         <locationX>176</locationX>
-        <locationY>431</locationY>
+        <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>SumAmount</targetReference>
@@ -78,7 +78,7 @@
         <name>UpdateObra</name>
         <label>UpdateObra</label>
         <locationX>176</locationX>
-        <locationY>839</locationY>
+        <locationY>731</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -95,39 +95,11 @@
         </inputAssignments>
         <object>Obra__c</object>
     </recordUpdates>
-    <recordUpdates>
-        <name>UpdateValuesFromObra</name>
-        <label>UpdateValuesFromObra</label>
-        <locationX>176</locationX>
-        <locationY>323</locationY>
-        <connector>
-            <targetReference>getAllSalesRefencial</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>CurrencyIsoCode</field>
-            <value>
-                <elementReference>$Record.Obra__r.CurrencyIsoCode</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>ProductClassification__c</field>
-            <value>
-                <elementReference>$Record.ProductCode__r.clasificacionProductos__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>ProductSubclassification__c</field>
-            <value>
-                <elementReference>$Record.ProductCode__r.clasificacionComercial41S5__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
     <start>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>UpdateValuesFromObra</targetReference>
+            <targetReference>getAllSalesRefencial</targetReference>
         </connector>
         <object>ReferenceSales__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>

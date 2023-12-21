@@ -111,6 +111,7 @@
     <types>
         <members>Obra__c.ActualizarUbicacion</members>
         <members>Obra__c.Crear_Estimacion</members>
+        <members>Obra__c.NuevaVentaReferencial</members>      
         <name>QuickAction</name>
     </types>
     <types>
