@@ -4,5 +4,10 @@
         <members>ProspectoPaginaRegistro</members>    
         <name>FlexiPage</name>
     </types>
+    <types>
+        <members>Lead.Inversionista__c</members> 
+        <name>CustomField</name>
+    </types>
+    
     <version>58.0</version>
 </Package>

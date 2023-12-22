@@ -15,6 +15,7 @@
 		<members>Lead.ciudadCanton__c</members>
 		<members>Lead.clienteFinal__c</members>
 		<members>Lead.direccionDetallada__c</members>
+        <members>Lead.Inversionista__c</members>
 		<members>Lead.nombreComercial__c</members>
 		<members>Lead.numeroIdentificacionFiscalNatural__c</members>
 		<members>Lead.pais__c</members>
