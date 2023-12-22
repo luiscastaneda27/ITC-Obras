@@ -7,31 +7,31 @@
         <locationX>264</locationX>
         <locationY>539</locationY>
         <assignmentItems>
-            <assignToReference>TotalPrice</assignToReference>
+            <assignToReference>Total</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>SumTotalPrice.TotalPrice</elementReference>
+                <elementReference>SumAmount.Amount__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>SumTotalPrice</targetReference>
+            <targetReference>SumAmount</targetReference>
         </connector>
     </assignments>
     <environments>Default</environments>
-    <interviewLabel>SumQuotesByTypeEstimacion {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>SumQuotesByTypeEstimacion</label>
+    <interviewLabel>SumSalesReferencial {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>SumSalesReferencial</label>
     <loops>
-        <name>SumTotalPrice</name>
-        <label>SumTotalPrice</label>
+        <name>SumAmount</name>
+        <label>SumAmount</label>
         <locationX>176</locationX>
         <locationY>431</locationY>
-        <collectionReference>getAllQuotes</collectionReference>
+        <collectionReference>getAllSalesRefencial</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Sum</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>update_obra</targetReference>
+            <targetReference>UpdateObra</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -54,13 +54,13 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
-        <name>getAllQuotes</name>
-        <label>getAllQuotes</label>
+        <name>getAllSalesRefencial</name>
+        <label>getAllSalesRefencial</label>
         <locationX>176</locationX>
         <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>SumTotalPrice</targetReference>
+            <targetReference>SumAmount</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -71,12 +71,12 @@
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>Quote</object>
+        <object>ReferenceSales__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
-        <name>update_obra</name>
-        <label>update obra</label>
+        <name>UpdateObra</name>
+        <label>UpdateObra</label>
         <locationX>176</locationX>
         <locationY>731</locationY>
         <filterLogic>and</filterLogic>
@@ -88,9 +88,9 @@
             </value>
         </filters>
         <inputAssignments>
-            <field>PotencialEstimadoVenta__c</field>
+            <field>VentasReferenciales__c</field>
             <value>
-                <elementReference>TotalPrice</elementReference>
+                <elementReference>Total</elementReference>
             </value>
         </inputAssignments>
         <object>Obra__c</object>
@@ -99,19 +99,15 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>getAllQuotes</targetReference>
+            <targetReference>getAllSalesRefencial</targetReference>
         </connector>
-        <filterFormula>AND({!$Record.RecordType.DeveloperName} = &apos;EstimacionQuote&apos;,
-NOT(ISPICKVAL({!$Record.Status}, &apos;Cancelada&apos;)),
-ISCHANGED({!$Record.TotalPrice}),
-{!$Record.TotalPrice} &gt; 0 )</filterFormula>
-        <object>Quote</object>
+        <object>ReferenceSales__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
     <variables>
-        <name>TotalPrice</name>
+        <name>Total</name>
         <dataType>Number</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

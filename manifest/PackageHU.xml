@@ -1,44 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-	<types>
-		<members>Lead.canalDestino__c</members>
-		<members>Lead.canal__c</members>
-		<members>Lead.cargo__c</members>
-		<members>Lead.ciudadCanton__c</members>
-		<members>Lead.clienteFinal__c</members>
-		<members>Lead.direccionDetallada__c</members>
-		<members>Lead.nombreComercial__c</members>
-		<members>Lead.numeroIdentificacionFiscalNatural__c</members>
-		<members>Lead.pais__c</members>
-		<members>Lead.provincia__c</members>
-		<members>Lead.regionComercial__c</members>
-		<members>Lead.subCanal__c</members>
-		<members>Lead.tipoIdentificacionFiscal__c</members>
-		<members>Obra__c.PotencialEstimadoVenta__c</members>
-		<name>CustomField</name>
-	</types>
-	<types>
-		<members>ObraPaginaRegistro</members>
-		<members>prospectoPaginaRegistro</members>
-		<name>FlexiPage</name>
-	</types>
-	<types>
-		<members>Lead-Inversionista</members>
-		<members>Obra__c-Formato Obras</members>
-		<name>Layout</name>
-	</types>
-	<types>
+    <types>
+        <members>SumSalesReferencial</members>
+		<members>SumQuotesByTypeEstimacion</members>
+        <name>Flow</name>
+    </types>
+    <types>    
+        <members>ReferenceSales__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>ReferenceSales__c-Ventas Referenciales Layout</members>
+		<members>Obra__c-Formato Obras</members>  
+        <name>Layout</name>
+    </types>
+    <types>
         <members>ProyectoObra</members>
         <name>PermissionSet</name>
     </types>
+    <types>
+        <members>ReferenceSales__c.AmountLess</members>
+        <members>ReferenceSales__c.CompanyByObra</members>
+        <name>ValidationRule</name>
+    </types>
 	<types>
-		<members>Lead.Inversionista</members>
-		<name>RecordType</name>
+		<members>Obra__c.NuevaVentaReferencial</members>
+		<name>WebLink</name>
 	</types>
-	<types>
-		<members>Lead.IngresoNumeroIdentificacionFiscal</members>
-		<members>Lead.IngresoNumeroIdentificacionFiscalNatural</members>
-		<name>ValidationRule</name>
-	</types>
-	<version>58.0</version>
+    <version>58.0</version>
 </Package>
