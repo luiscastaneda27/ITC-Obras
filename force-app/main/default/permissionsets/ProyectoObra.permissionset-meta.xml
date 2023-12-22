@@ -116,7 +116,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>ReferenceSales__c.ProductClassification__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -126,7 +126,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>ReferenceSales__c.ProductSubclassification__c</field>
         <readable>true</readable>
     </fieldPermissions>

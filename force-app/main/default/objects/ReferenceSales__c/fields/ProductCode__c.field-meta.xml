@@ -14,8 +14,8 @@
         <isOptional>false</isOptional>
     </lookupFilter>
     <referenceTo>Product2</referenceTo>
-    <relationshipLabel>Ventas Referenciales</relationshipLabel>
-    <relationshipName>Ventas_Referenciales</relationshipName>
+    <relationshipLabel>Ventas Referenciales Producto</relationshipLabel>
+    <relationshipName>Ventas_Referenciales_Producto</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>
