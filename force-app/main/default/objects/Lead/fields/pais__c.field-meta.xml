@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pais__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <inlineHelpText>01/01</inlineHelpText>
+    <label>País</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>udcDetallada__c.codigoUDC__c</field>
+            <operation>equals</operation>
+            <value>01/01</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>udcDetallada__c</referenceTo>
+    <relationshipLabel>Candidatos</relationshipLabel>
+    <relationshipName>CandidatosPaises</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

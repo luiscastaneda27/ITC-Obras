@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>tipoIdentificacionFiscal__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <inlineHelpText>H00/TA</inlineHelpText>
+    <label>Tipo de Identificación Fiscal</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>udcDetallada__c.codigoUDC__c</field>
+            <operation>equals</operation>
+            <value>H00/TA</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>udcDetallada__c</referenceTo>
+    <relationshipLabel>Candidatos (Tipo de identificación fiscal)</relationshipLabel>
+    <relationshipName>CandidatosTiposIdFiscal</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

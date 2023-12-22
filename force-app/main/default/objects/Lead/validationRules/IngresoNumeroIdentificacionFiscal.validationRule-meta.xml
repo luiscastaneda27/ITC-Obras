@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IngresoNumeroIdentificacionFiscal</fullName>
+    <active>true</active>
+    <description>Colocar sólo valores numéricos</description>
+    <errorConditionFormula>AND(NOT(ISBLANK( numeroIdentificacionFiscal__c )),NOT(ISNUMBER(numeroIdentificacionFiscal__c )))</errorConditionFormula>
+    <errorDisplayField>numeroIdentificacionFiscal__c</errorDisplayField>
+    <errorMessage>Colocar sólo valores numéricos</errorMessage>
+</ValidationRule>
