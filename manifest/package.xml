@@ -9,6 +9,19 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>Lead.canalDestino__c</members>
+		<members>Lead.canal__c</members>
+		<members>Lead.cargo__c</members>
+		<members>Lead.ciudadCanton__c</members>
+		<members>Lead.clienteFinal__c</members>
+		<members>Lead.direccionDetallada__c</members>
+		<members>Lead.nombreComercial__c</members>
+		<members>Lead.numeroIdentificacionFiscalNatural__c</members>
+		<members>Lead.pais__c</members>
+		<members>Lead.provincia__c</members>
+		<members>Lead.regionComercial__c</members>
+		<members>Lead.subCanal__c</members>
+		<members>Lead.tipoIdentificacionFiscal__c</members>
         <members>Obra__c.Bodega__c</members>
         <members>Obra__c.Ciudad__c</members>
         <members>Obra__c.CodigoObra__c</members>
@@ -69,6 +82,7 @@
     <types>
         <members>ObraPaginaRegistro</members>
         <members>QuoteLighningPageEstimacion</members>
+		<members>prospectoPaginaRegistro</members>
         <name>FlexiPage</name>
     </types>
     <types>
@@ -77,6 +91,7 @@
         <name>Flow</name>
     </types>
     <types>
+        <members>Lead-Inversionista</members>
         <members>Obra__c-Formato Obras</members>
         <members>RelacionObra__c-Formato Relación Intaco</members>
         <members>Opportunity-Estimación Layout</members>
@@ -103,6 +118,7 @@
         <name>QuickAction</name>
     </types>
     <types>
+        <members>Lead.Inversionista</members>
         <members>Opportunity.Estimacion</members>
         <members>Quote.EstimacionQuote</members>
         <name>RecordType</name>
@@ -113,6 +129,8 @@
         <name>StandardValueSet</name>
     </types>
     <types>
+        <members>Lead.IngresoNumeroIdentificacionFiscal</members>
+		<members>Lead.IngresoNumeroIdentificacionFiscalNatural</members>
         <members>Obra__c.CampoNoEditableCompania</members>
         <members>Obra__c.CampoNoEditableUsuarioValidador</members>
         <members>Obra__c.EstadoInvalidoCancelada</members>

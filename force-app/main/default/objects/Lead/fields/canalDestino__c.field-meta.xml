@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>canalDestino__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <inlineHelpText>01/10</inlineHelpText>
+    <label>Canal Destino</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Debe elegir un canal de destino válido</errorMessage>
+        <filterItems>
+            <field>udcDetallada__c.codigoUDC__c</field>
+            <operation>equals</operation>
+            <value>01/10</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>udcDetallada__c</referenceTo>
+    <relationshipLabel>Candidatos (Canal destino)</relationshipLabel>
+    <relationshipName>CandidatosCanalesDestino</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

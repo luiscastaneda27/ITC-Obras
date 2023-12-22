@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>cargo__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <inlineHelpText>01/FC</inlineHelpText>
+    <label>Cargo</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Debe elegir un cargo válido</errorMessage>
+        <filterItems>
+            <field>udcDetallada__c.codigoUDC__c</field>
+            <operation>equals</operation>
+            <value>01/FC</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>udcDetallada__c</referenceTo>
+    <relationshipLabel>Candidatos (Cargo)</relationshipLabel>
+    <relationshipName>CandidatosCargos</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>
