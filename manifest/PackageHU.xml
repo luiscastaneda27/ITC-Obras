@@ -18,10 +18,6 @@
 		<name>CustomField</name>
 	</types>
 	<types>
-		<members>Lead</members>
-		<name>CustomObject</name>
-	</types>
-	<types>
 		<members>ObraPaginaRegistro</members>
 		<members>ProspectoPaginaRegistro</members>
 		<name>FlexiPage</name>
