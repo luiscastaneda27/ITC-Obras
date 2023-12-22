@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>ProspectoPaginaRegistro</members>    
+        <name>FlexiPage</name>
+    </types>
+    <types>
         <members>SumSalesReferencial</members>
 		<members>SumQuotesByTypeEstimacion</members>
         <name>Flow</name>
