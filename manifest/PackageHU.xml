@@ -28,6 +28,10 @@
 		<name>Layout</name>
 	</types>
 	<types>
+        <members>ProyectoObra</members>
+        <name>PermissionSet</name>
+    </types>
+	<types>
 		<members>Lead.Inversionista</members>
 		<name>RecordType</name>
 	</types>
