@@ -71,7 +71,6 @@
     </types>
     <types>
         <members>Obra__c</members>
-        <members>ProspectoPaginaRegistro</members>
         <members>RelacionObra__c</members>
         <members>GenericAccountObras__mdt</members>
         <name>CustomObject</name>
@@ -83,6 +82,7 @@
     <types>
         <members>ObraPaginaRegistro</members>
         <members>QuoteLighningPageEstimacion</members>
+		<members>prospectoPaginaRegistro</members>
         <name>FlexiPage</name>
     </types>
     <types>
