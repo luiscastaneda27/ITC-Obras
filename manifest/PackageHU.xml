@@ -35,6 +35,9 @@
 		<members>ProyectoObra</members>
 		<name>PermissionSet</name>
 	</types>
+    <types>
+		<members>currentLocationLWC</members>
+		<name>LightningComponentBundle</name>
+	</types>
 	<version>58.0</version>
 </Package>
-

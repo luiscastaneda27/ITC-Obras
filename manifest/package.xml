@@ -72,6 +72,7 @@
         <members>RelacionObra__c.LeadName__c</members>
         <members>RelacionObra__c.Obra__c</members>
         <members>RelacionObra__c.Prospecto__c</members>
+        <members>RelacionObra__c.Relacion__c</members>
         <members>RelacionObra__c.Tipo__c</members>
         <members>GenericAccountObras__mdt.AccountCode__c</members>
         <members>Quote.ObraCode__c</members>
@@ -170,5 +171,9 @@
         <members>Obra__c.NuevaVentaReferencial</members>
         <name>WebLink</name>
     </types>
+    <types>
+		<members>currentLocationLWC</members>
+		<name>LightningComponentBundle</name>
+	</types>
     <version>58.0</version>
 </Package>
