@@ -1,12 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-		<members>NewObraController</members>
-		<name>ApexClass</name>
+		<members>Obra__c.Bodega__c</members>
+		<members>Obra__c.Ciudad__c</members>
+		<members>Obra__c.DireccionDetallada__c</members>
+		<members>Obra__c.EstadoObra__c</members>
+		<members>Obra__c.FechaFin__c</members>
+        <members>Obra__c.ParticipacionVentas__c</members>
+		<members>Obra__c.FechaInicio__c</members>
+		<members>Obra__c.M2Construccion__c</members>
+		<members>Obra__c.M2Pared__c</members>
+		<members>Obra__c.M2Piso__c</members>
+		<members>Obra__c.Provincia__c</members>
+		<members>Obra__c.Region__c</members>
+		<members>Obra__c.TipoConstruccion__c</members>
+		<members>Obra__c.TipoObraEdificacion__c</members>
+		<members>Obra__c.UnidadNegocioIngreso__c</members>
+		<members>Obra__c.UsuarioValidador__c</members>
+		<members>Obra__c.ZonaTerritorioComercial__c</members>
+		<members>RelacionObra__c.Relacion__c</members>
+		<members>RelacionObra__c.TipoRelacion__c</members>
+		<name>CustomField</name>
 	</types>
 	<types>
-		<members>newObraAura</members>
-		<name>AuraDefinitionBundle</name>
+		<members>ObraPaginaRegistro</members>
+		<name>FlexiPage</name>
+	</types>
+	<types>
+		<members>Obra__c-Formato Obras</members>
+        <members>RelacionObra__c-Formato Relación Intaco</members>
+		<name>Layout</name>
+	</types>
+	<types>
+		<members>ProyectoObra</members>
+		<name>PermissionSet</name>
+	</types>
+    <types>
+		<members>currentLocationLWC</members>
+		<name>LightningComponentBundle</name>
 	</types>
 	<version>58.0</version>
 </Package>

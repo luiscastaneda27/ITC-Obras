@@ -5,7 +5,7 @@
     <inlineHelpText>Debe ingresar solo valores numéricos</inlineHelpText>
     <label>M2 de Pared</label>
     <precision>10</precision>
-    <required>true</required>
+    <required>false</required>
     <scale>0</scale>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
