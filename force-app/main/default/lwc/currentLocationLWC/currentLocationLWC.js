@@ -189,6 +189,7 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
             PostalCode: (this.postalCode === undefined && this.isfirstTab == false) ? null : this.postalCode,
             Street: (this.street === undefined && this.isfirstTab == false) ? null : this.street,
             State: (this.strState === undefined && this.isfirstTab == false) ? null : this.strState,
+            DireccionDetallada__c: (this.street === undefined && this.isfirstTab == false) ? null : this.street,
 
             Direccion_2_0__Street__s: (this.street === undefined && this.isfirstTab == false) ? null : this.street,
             Direccion_2_0__City__s: (this.city === undefined && this.isfirstTab == false) ? null : this.city,

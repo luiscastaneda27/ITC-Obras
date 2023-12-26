@@ -82,10 +82,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Pais__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
                 <field>Region__c</field>
             </layoutItems>
             <layoutItems>
@@ -94,14 +90,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>direccionGeorreferenciada__c</field>
+                <field>DireccionDetallada__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>DireccionDetallada__c</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>ZonaTerritorioComercial__c</field>
@@ -193,30 +185,17 @@
             <sortOrder>0</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-<<<<<<< HEAD
             <actionName>NuevaVentaReferencial</actionName>
             <actionType>CustomButton</actionType>
             <sortOrder>1</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>Obra__c.ActualizarUbicacion</actionName>
-=======
-            <actionName>Obra__c.ActualizarUbicacion</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>1</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>NewEvent</actionName>
->>>>>>> main
             <actionType>QuickAction</actionType>
             <sortOrder>2</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-<<<<<<< HEAD
             <actionName>NewEvent</actionName>
-=======
-            <actionName>LogACall</actionName>
->>>>>>> main
             <actionType>QuickAction</actionType>
             <sortOrder>3</sortOrder>
         </platformActionListItems>
@@ -284,6 +263,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>TipoRelacion__c</fields>
+        <fields>Relacion__c</fields>
         <fields>Tipo__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>RelacionObra__c.Obra__c</relatedList>
