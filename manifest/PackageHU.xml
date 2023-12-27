@@ -8,5 +8,13 @@
 		<members>newObraAura</members>
 		<name>AuraDefinitionBundle</name>
 	</types>
+	<types>
+        <members>UpdateRelatedQuotesFromObra</members>
+        <name>Flow</name>
+    </types>
+	<types>
+        <members>Quote.NoEditarCotizacionEstimacion</members>
+        <name>ValidationRule</name>
+    </types>
 	<version>58.0</version>
 </Package>
