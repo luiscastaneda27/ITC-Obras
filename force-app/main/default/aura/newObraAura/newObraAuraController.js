@@ -12,15 +12,17 @@
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-                component.set("v.companyId", response.getReturnValue());
+                component.set("v.result", response.getReturnValue());
                 
-                var companyId = component.get("v.companyId");
+                var companyId = component.get("{!v.result.companyId}");
+                var countryId = component.get("{!v.result.countryId}");
                 var createRecordEvent = $A.get("e.force:createRecord");
                 
                 createRecordEvent.setParams({
                     "entityApiName": "Obra__c",
                     "defaultFieldValues": {
-                        "Compania__c": companyId
+                        "Compania__c": companyId,
+                        "Pais__c": countryId
                     }                    
                 });
                 createRecordEvent.fire();

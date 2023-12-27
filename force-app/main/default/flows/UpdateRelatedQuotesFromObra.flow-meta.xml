@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <environments>Default</environments>
+    <interviewLabel>UpdateRelatedQuotesFromObra {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>UpdateRelatedQuotesFromObra</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>UpdateQuotes</name>
+        <label>UpdateQuotes</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Cancelada</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Quotes__r</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>UpdateQuotes</targetReference>
+        </connector>
+        <filterFormula>AND(ISCHANGED({!$Record.EstadoObra__c}),
+TEXT({!$Record.EstadoObra__c}) = &apos;Cancelada&apos;
+)</filterFormula>
+        <object>Obra__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

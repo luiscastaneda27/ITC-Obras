@@ -3,8 +3,16 @@
     <fullName>NoEditarCotizacionEstimacion</fullName>
     <active>true</active>
     <errorConditionFormula>AND( RecordType.DeveloperName = &apos;EstimacionQuote&apos;, 
-OR(TEXT(PRIORVALUE(Status)) = &apos;Aprobada&apos;, 
-TEXT(PRIORVALUE(Status)) = &apos;Cancelada&apos;)
+OR(
+AND(TEXT(PRIORVALUE(Status)) = &apos;Aprobada&apos;,  
+OR(ISPICKVAL(Status, &apos;Presupuesto&apos;), 
+ISPICKVAL(Status, &apos;Draft&apos;)) ),
+AND(TEXT(PRIORVALUE(Status)) = &apos;Cancelada&apos;,
+OR(ISPICKVAL(Status, &apos;Presupuesto&apos;), 
+ISPICKVAL(Status, &apos;Draft&apos;)))
+
+)
+
 )</errorConditionFormula>
     <errorMessage>No es posible modificar la cotización en el estado actual</errorMessage>
 </ValidationRule>

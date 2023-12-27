@@ -1,5 +1,7 @@
 <aura:component implements="force:lightningQuickActionWithoutHeader,flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global" controller="NewObraController">
     <aura:attribute name="userId" type="String" />
     <aura:attribute name="companyId" type="String" />
+    <aura:attribute name="countryId" type="String" />
+    <aura:attribute name="result" type="Map" />
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
 </aura:component>
