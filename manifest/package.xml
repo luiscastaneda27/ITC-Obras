@@ -111,6 +111,7 @@
         <members>CreateQuoteFromObras</members>
         <members>SumQuotesByTypeEstimacion</members>
         <members>SumSalesReferencial</members>
+		<members>UpdateRelatedQuotesFromObra</members>
         <name>Flow</name>
     </types>
     <types>
