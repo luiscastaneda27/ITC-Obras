@@ -161,6 +161,7 @@
         <members>Obra__c.FechaInvalida</members>
         <members>Obra__c.ValorNoValido</members>
         <members>Quote.NoEditarCotizacionEstimacion</members>
+		<members>Quote.validacionCambioEstadoSinPrecio</members>
         <members>ReferenceSales__c.AmountLess</members>
         <members>ReferenceSales__c.CompanyByObra</members>      
         <members>RelacionObra__c.CuentaInvalida</members>
