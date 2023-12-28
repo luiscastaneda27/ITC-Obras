@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-		<members>CurrentLocationController</members>
-		<members>CurrentLocationController_Test</members>
-		<name>ApexClass</name>
-	</types>
-	<types>
-		<members>GoogleMapsAPI</members>
-		<name>CustomLabel</name>
-	</types>
-	<types>
-		<members>currentLocationLWC</members>
-		<name>LightningComponentBundle</name>
-	</types>
-	<types>
-        <members>UpdateRelatedQuotesFromObra</members>
+        <members>CreateQuoteFromObras</members>
         <name>Flow</name>
     </types>
 	<types>
-        <members>Quote.NoEditarCotizacionEstimacion</members>
+        <members>Quote.validacionCambioEstadoSinPrecio</members>
         <name>ValidationRule</name>
     </types>
 	<version>58.0</version>

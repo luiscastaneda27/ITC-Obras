@@ -142,8 +142,15 @@
         <name>OppName</name>
         <dataType>String</dataType>
         <expression>IF(ISBLANK({!SearchAccounts.selectedChoiceValues}), 
-{!GetGenericAccount.Name} + &apos; - &apos; + {!GetInfoObra.Name}, 
-{!SearchAccounts.selectedChoiceLabels} + &apos; - &apos; + {!GetInfoObra.Name})</expression>
+&apos;Oportunidad - &apos;+{!GetGenericAccount.Name} + &apos; - &apos; + {!GetInfoObra.Name}, 
+&apos;Oportunidad - &apos;+{!SearchAccounts.selectedChoiceLabels} + &apos; - &apos; + {!GetInfoObra.Name})</expression>
+    </formulas>
+    <formulas>
+        <name>QuoteName</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!SearchAccounts.selectedChoiceValues}), 
+&apos;Estimación - &apos;+{!GetGenericAccount.Name} + &apos; - &apos; + {!GetInfoObra.Name}, 
+&apos;Estimación - &apos;+{!SearchAccounts.selectedChoiceLabels} + &apos; - &apos; + {!GetInfoObra.Name})</expression>
     </formulas>
     <interviewLabel>CreateQuoteFromObras {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Create Quote From Obra</label>
@@ -263,7 +270,7 @@
         <inputAssignments>
             <field>Name</field>
             <value>
-                <elementReference>OppName</elementReference>
+                <elementReference>QuoteName</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
