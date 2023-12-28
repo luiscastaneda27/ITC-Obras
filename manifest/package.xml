@@ -3,6 +3,8 @@
     <types>
         <members>Opportunity_handler</members>
         <members>NewObraController</members>
+        <members>CurrentLocationController</members>
+		<members>CurrentLocationController_Test</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -80,6 +82,10 @@
         <members>RelacionObra__c.AccountName__c</members>
         <name>CustomField</name>
     </types>
+    <types>
+		<members>GoogleMapsAPI</members>
+		<name>CustomLabel</name>
+	</types>
     <types>
         <members>GenericAccountObras.CR</members>
         <name>CustomMetadata</name>
