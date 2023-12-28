@@ -3,14 +3,14 @@
     <fullName>pais__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <inlineHelpText>01/01</inlineHelpText>
+    <inlineHelpText>00/CN</inlineHelpText>
     <label>País</label>
     <lookupFilter>
         <active>true</active>
         <filterItems>
             <field>udcDetallada__c.codigoUDC__c</field>
             <operation>equals</operation>
-            <value>01/01</value>
+            <value>00/CN</value>
         </filterItems>
         <isOptional>true</isOptional>
     </lookupFilter>

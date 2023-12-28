@@ -97,7 +97,7 @@
     <types>
         <members>ObraPaginaRegistro</members>
         <members>QuoteLighningPageEstimacion</members>
-        <members>ProspectoPaginaRegistro</members>    
+        <members>prospectoPaginaRegistro</members>    
         <name>FlexiPage</name>
     </types>
     <types>
