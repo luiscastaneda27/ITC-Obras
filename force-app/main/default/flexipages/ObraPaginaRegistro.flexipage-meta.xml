@@ -231,16 +231,6 @@
                     <name>uiBehavior</name>
                     <value>required</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Pais__c</fieldItem>
-                <identifier>RecordPais_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>required</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.Region__c</fieldItem>
                 <identifier>RecordRegion_cField</identifier>
             </fieldInstance>
@@ -261,24 +251,14 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.direccionGeorreferenciada__c</fieldItem>
-                <identifier>RecorddireccionGeorreferenciada_cField</identifier>
+                <fieldItem>Record.DireccionDetallada__c</fieldItem>
+                <identifier>RecordDireccionDetallada_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-b03bfa51-68ec-4e17-bf8f-9b10755446b6</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>required</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.DireccionDetallada__c</fieldItem>
-                <identifier>RecordDireccionDetallada_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>

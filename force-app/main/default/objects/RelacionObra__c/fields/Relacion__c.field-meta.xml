@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>DireccionDetallada__c</fullName>
+    <fullName>Relacion__c</fullName>
     <externalId>false</externalId>
-    <label>Dirección Detallada</label>
-    <length>255</length>
+    <formula>IF( Cuenta__c = null, LeadName__c, AccountName__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Relación</label>
     <required>false</required>
-    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Text</type>
     <unique>false</unique>

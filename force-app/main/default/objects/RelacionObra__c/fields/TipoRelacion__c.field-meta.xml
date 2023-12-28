@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <formula>IF( Cuenta__c = null, &apos;Prospecto&apos;, &apos;Cuenta&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Tipo de Relacion</label>
+    <label>Tipo de Relación</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>

@@ -1,9 +1,8 @@
-import { LightningElement, api, wire, track } from 'lwc';
-import { refreshApex } from '@salesforce/apex';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { getRecord, updateRecord } from 'lightning/uiRecordApi';
-import { CloseActionScreenEvent } from 'lightning/actions';
 import toUpdateRecord from '@salesforce/apex/CurrentLocationController.updateRecord';
+import { CloseActionScreenEvent } from 'lightning/actions';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { getRecord } from 'lightning/uiRecordApi';
+import { LightningElement, api, track, wire } from 'lwc';
 
 import { NavigationMixin } from 'lightning/navigation';
 const LATITUDE_LEA_FIELD = 'Lead.CurrentLocation__Latitude__s';
@@ -128,7 +127,7 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
         this.isLoading = true;
         this.isfirstTab = true;
         
-        if (navigator.geolocation) {
+        /*if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
 
                 // Get the Latitude and Longitude from Geolocation API
@@ -141,9 +140,10 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
                 // console.log('Direccion: ' + this.address);
                 this.toUpdateRecord();
             });
-        }
+        }*/
 
         //this.setLocation(undefined, undefined);
+        this.toUpdateRecord();
 
     }
 
@@ -189,6 +189,9 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
             PostalCode: (this.postalCode === undefined && this.isfirstTab == false) ? null : this.postalCode,
             Street: (this.street === undefined && this.isfirstTab == false) ? null : this.street,
             State: (this.strState === undefined && this.isfirstTab == false) ? null : this.strState,
+            DireccionDetallada__c: ((this.street === undefined && this.isfirstTab == false) ? '' : this.street) +' '+ 
+                                ((this.city === undefined && this.isfirstTab == false) ? '' : this.city) + ' '+
+                                ((this.country === undefined && this.isfirstTab == false) ? '' : this.country),
 
             Direccion_2_0__Street__s: (this.street === undefined && this.isfirstTab == false) ? null : this.street,
             Direccion_2_0__City__s: (this.city === undefined && this.isfirstTab == false) ? null : this.city,

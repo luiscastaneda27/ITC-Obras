@@ -4,6 +4,16 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Unidad de Negocio de Ingreso</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Debe elegir una unidad de negocio válida para la compañía seleccionada</errorMessage>
+        <filterItems>
+            <field>$Source.Compania__c</field>
+            <operation>equals</operation>
+            <valueField>unidadNegocioIngreso__c.compania__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>unidadNegocioIngreso__c</referenceTo>
     <relationshipLabel>Obra</relationshipLabel>
     <relationshipName>Obras</relationshipName>

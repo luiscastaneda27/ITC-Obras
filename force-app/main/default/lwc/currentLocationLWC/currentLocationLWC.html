@@ -27,16 +27,16 @@
                     <legend class="slds-form-element__label slds-form-element__legend">Búsqueda por dirección</legend>
                     <div>
                         
-                        <lightning-input-address read-only label="Dirección" 
+                        <lightning-input-address label="Dirección" 
                         street-label="Calle" city-label="Ciudad"
                         province-label="Provincia" postal-code-label="Código Postal" country-label="País" street={street}
                         city={city} province={province} postal-code={postalCode} country={country}
                             onchange={addressInputChange} show-address-lookup >
-                        </lightning-input-address>
+                        </lightning-input-address><br /><br />
                         
                         <lightning-layout class="c-container" multiple-rows horizontal-align="space">
                             <lightning-layout-item size="6">
-                                <div class="slds-col slds-size_6-of-12" align="center">
+                                <div class="slds-float_left" align="center">
                                     <lightning-button disabled label="Location" icon-name="utility:checkin"
                                         alternative-text="Get Current Location" variant="Success" title="Get Current Location"
                                         onclick={handleClick}>
@@ -45,7 +45,7 @@
                                 </div>
                             </lightning-layout-item>
                             <lightning-layout-item size="6">
-                                <div class="slds-col slds-size_6-of-12">
+                                <div class="slds-float_right">
                                     <lightning-button variant="brand" label="Guardar" onclick={handlefirstTabButtonClick}>
                                     </lightning-button>
                                     <br /><br />
