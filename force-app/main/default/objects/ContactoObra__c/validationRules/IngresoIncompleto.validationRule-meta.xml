@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IngresoIncompleto</fullName>
+    <active>true</active>
+    <description>Valida que no es posible guardar el registro si no está por lo menos un campo de contacto lleno</description>
+    <errorConditionFormula>AND(ISBLANK(ContactoCliente__c),ISBLANK(ContactoProspecto__c))</errorConditionFormula>
+    <errorMessage>Debe ingresar un Contacto relacionado a la Obra</errorMessage>
+</ValidationRule>

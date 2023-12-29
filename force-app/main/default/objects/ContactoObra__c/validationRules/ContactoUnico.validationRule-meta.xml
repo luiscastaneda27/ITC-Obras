@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ContactoUnico</fullName>
+    <active>true</active>
+    <description>Valida que un contacto de obra sólo puede tener relación a un tipo de contacto</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(ContactoCliente__c)),NOT(ISBLANK(ContactoProspecto__c)))</errorConditionFormula>
+    <errorMessage>Sólo debe relacionar a un tipo de contacto</errorMessage>
+</ValidationRule>
