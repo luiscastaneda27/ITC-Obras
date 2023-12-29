@@ -271,12 +271,23 @@
         <relatedList>Quote.Obra__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>TipoRelacion__c</fields>
         <fields>Relacion__c</fields>
         <fields>Tipo__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>RelacionObra__c.Obra__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>TipoContacto__c</fields>
+        <fields>NombreContacto__c</fields>
+        <fields>Tipo__c</fields>
+        <relatedList>ContactoObra__c.NombreObra__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
