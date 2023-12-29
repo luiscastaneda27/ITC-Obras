@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>NewObraController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
         <name>GenericAccountObras__mdt</name>
     </customMetadataTypeAccesses>
     <description>Conjunto de permisos Custom para desarrollo de Intaco</description>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Obra__c.Bodega__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Obra__c.CodigoObras__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.codigoClienteTexto__c</field>
@@ -22,7 +16,47 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>ContactoObra__c.ContactoCliente__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ContactoObra__c.ContactoProspecto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ContactoObra__c.NombreContacto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ContactoObra__c.NombreObra__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ContactoObra__c.TipoContacto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ContactoObra__c.Tipo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Obra__c.Bodega__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Obra__c.Ciudad__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Obra__c.CodigoObras__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -38,6 +72,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Obra__c.DetalleObra__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Obra__c.DireccionDetallada__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -61,11 +100,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Obra__c.Moneda__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Obra__c.M2Construccion__c</field>
         <readable>true</readable>
@@ -78,6 +112,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Obra__c.M2Piso__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Obra__c.Moneda__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -142,17 +181,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Obra__c.DireccionDetallada__c</field>
+        <field>Obra__c.ZonaTerritorioComercial__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Obra__c.direccionGeorreferenciada__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Obra__c.ZonaTerritorioComercial__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -237,17 +271,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>RelacionObra__c.TipoRelacion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>RelacionObra__c.Relacion__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>RelacionObra__c.Tipo__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>RelacionObra__c.TipoRelacion__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
@@ -270,6 +304,15 @@
         <modifyAllRecords>false</modifyAllRecords>
         <object>Contact</object>
         <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>ContactoObra__c</object>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>

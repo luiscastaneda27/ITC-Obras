@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tipo__c</fullName>
+    <externalId>false</externalId>
+    <label>Tipo</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Constructora</fullName>
+                <default>false</default>
+                <label>Constructora</label>
+            </value>
+            <value>
+                <fullName>Contratista</fullName>
+                <default>false</default>
+                <label>Contratista</label>
+            </value>
+            <value>
+                <fullName>Distribuidor</fullName>
+                <default>false</default>
+                <label>Distribuidor</label>
+            </value>
+            <value>
+                <fullName>Inversionista</fullName>
+                <default>false</default>
+                <label>Inversionista</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

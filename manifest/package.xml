@@ -16,6 +16,12 @@
 		<name>AuraDefinitionBundle</name>
 	</types>
     <types>
+    	<members>ContactoObra__c.ContactoCliente__c</members>
+		<members>ContactoObra__c.ContactoProspecto__c</members>
+		<members>ContactoObra__c.NombreContacto__c</members>
+		<members>ContactoObra__c.NombreObra__c</members>
+		<members>ContactoObra__c.TipoContacto__c</members>
+		<members>ContactoObra__c.Tipo__c</members>
         <members>Lead.canalDestino__c</members>
         <members>Lead.canal__c</members>
         <members>Lead.cargo__c</members>
@@ -91,6 +97,7 @@
         <name>CustomMetadata</name>
     </types>
     <types>
+        <members>ContactoObra__c</members>
         <members>Obra__c</members>     
         <members>ReferenceSales__c</members>
         <members>RelacionObra__c</members>
@@ -115,6 +122,7 @@
         <name>Flow</name>
     </types>
     <types>
+        <members>ContactoObra__c-Contacto de Obra Layout</members>
         <members>Obra__c-Formato Obras</members>    
         <members>Lead-Inversionista</members>
         <members>ReferenceSales__c-Ventas Referenciales Layout</members>
@@ -138,6 +146,8 @@
         <name>Queue</name>
     </types>
     <types>
+        <members>Obra__c.NuevaRelacionObra</members>
+		<members>Obra__c.NuevoContactoObra</members>
         <members>Obra__c.ActualizarUbicacion</members>
         <members>Obra__c.Crear_Estimacion</members>
         <members>Obra__c.NuevaVentaReferencial</members>      
@@ -155,6 +165,8 @@
         <name>StandardValueSet</name>
     </types>
     <types>
+        <members>ContactoObra__c.ContactoUnico</members>
+		<members>ContactoObra__c.IngresoIncompleto</members>
         <members>Lead.IngresoNumeroIdentificacionFiscal</members>
         <members>Lead.IngresoNumeroIdentificacionFiscalNatural</members>
         <members>Obra__c.CampoNoEditableCompania</members>
