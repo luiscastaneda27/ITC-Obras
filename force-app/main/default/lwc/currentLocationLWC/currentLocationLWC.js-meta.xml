@@ -13,9 +13,9 @@
         </targetConfig>
 
         <targetConfig targets="lightning__FlowScreen">
+            <property name="recordid" type="String" label="Record Id"></property>
             <property name="latitude" type="String" label="Latitud"></property>
             <property name="longitude" type="String" label="Longitud"></property>
-            <property name="recordid" type="String" label="Record Id"></property>
             <property name="showSaveButon" type="Boolean" label="Mostrar botón guardar"></property>
         </targetConfig>
 

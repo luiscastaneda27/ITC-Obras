@@ -1,43 +1,40 @@
 import toUpdateRecord from '@salesforce/apex/CurrentLocationController.updateRecord';
+import API_KEY from '@salesforce/label/c.GoogleMapsAPI';
 import { CloseActionScreenEvent } from 'lightning/actions';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { getRecord } from 'lightning/uiRecordApi';
 import { LightningElement, api, track, wire } from 'lwc';
 
+
+import LAT_ACCOUNT_FIELD from "@salesforce/schema/Account.CurrentLocation__c";
+import LNG_ACCOUNT_FIELD from "@salesforce/schema/Account.CurrentLocation__c";
 import { NavigationMixin } from 'lightning/navigation';
-const LATITUDE_LEA_FIELD = 'Lead.CurrentLocation__Latitude__s';
-const LONGITUDE_LEA_FIELD = 'Lead.CurrentLocation__Longitude__s';
 
-
-
-//Fields to both, Account and Lead
-const RECORD_FIELDS = [LATITUDE_LEA_FIELD, LONGITUDE_LEA_FIELD];
-
-
-
+const ACC_RECORD_FIELDS = [LAT_ACCOUNT_FIELD, LNG_ACCOUNT_FIELD];
 
 export default class CurrentLocationLWC extends NavigationMixin(LightningElement) {
+
+    @api recordid;
+    @api recordId;
+    @api objectApiName;
+    @track relativeRecID 
+    
+  
     showButon = false;
-    @api
-    latitude;
-    @api
-    longitude;
+    @api latitude;
+    @api longitude;
     myLocation;
     account;
     lead;
-    @api
-    showSaveButon = false;
+    @api showSaveButon = false;
     isLoading = false;
 
-    @track
-    lstMarkers = [];
+    @track lstMarkers = [];
     zoomlevel = "1";
 
     @track isfirstTab = false;
     sobjectType;
 
-    @api
-    recordid;
 
     @track address;
     @track address2;
@@ -47,24 +44,64 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
     @track strCountry;
     @track strPostalCode;
     @track strCountryCodes;
+    @track recordData;
 
+    @track timeoutActive = false;
+    @track isfirstStart = true;
+    
+    connectedCallback() {
+        this.relativeRecID = this.recordid!= null ?this.recordid: this.recordId;
+        console.log(`relativeRecID: ${this.relativeRecID}`);
 
-    @wire(getRecord, { recordid: '$recordid', fields: RECORD_FIELDS })
+        // Obtener el nombre del objeto basado en el Id del registro
+        // this.objectApiName = this.recordid.split(/-/)[0]; // Extrayendo el objeto del Id del registro
+
+    }
+
+    @wire(getRecord, { recordId: "$relativeRecID", layoutTypes: ["Full"], modes: ["View"] })
+    objData({ error, data }) {
+        if (error) {
+          let message = "Unknown error";
+          if (Array.isArray(error.body)) {
+            message = error.body.map((e) => e.message).join(", ");
+          } else if (typeof error.body.message === "string") {
+            message = error.body.message;
+          }
+          this.dispatchEvent(
+            new ShowToastEvent({
+              title: "Error loading",
+              message,
+              variant: "error",
+            }),
+          );
+        } else if (data) {
+          this.recordData = data;
+          this.objectApiName = data.apiName
+        //   console.log(`APINAME:${JSON.stringify(this.recordData)}`);
+          console.log(`APINAME:${this.objectApiName}`);
+        }
+      }
+
+    @wire(getRecord , { recordId: "$relativeRecID", fields: ACC_RECORD_FIELDS })
     wiredRecord({ error, data }) {
         if (data) {
-
+            console.log(`APINAME:${JSON.stringify(data)}`);
             if (data.apiName === 'Lead') {
                 this.lead = data;
                 this.sobjectType = 'Lead';
             } else if (data.apiName === 'Account') {
                 this.account = data;
                 this.sobjectType = 'Account';
+
+            }else {
+                this.sobjectType = data.apiName;
+                console.log(`this.sobjectType:${this.sobjectType}`);
             }
 
             try {
-
-                this.latitude = this.lead.fields.CurrentLocation__Latitude__s.value;
-                this.longitude = this.lead.fields.CurrentLocation__Longitude__s.value;
+                this.dataObj = data;
+                this.latitude = data.fields.CurrentLocation__Latitude__s;
+                this.longitude = data.fields.CurrentLocation__Longitude__s  ;
                 this.setLocation(this.latitude, this.longitude);
             } catch (error) {
                 console.log(error)
@@ -91,15 +128,18 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
                 Street: (this.street === undefined) ? '' : this.street
 
             },
-            // title: 'You are here'
+
         }];
-        this.zoomlevel = "13";
-        console.log("this.lstMarkers: " + JSON.stringify(this.lstMarkers));
+        this.zoomlevel = "10";
+        // console.log(`this.lstMarkers: ${JSON.stringify(this.lstMarkers)}`);
+        // console.log(`COORDS: ${latitude} ${longitude}`);
+        // console.log(`this.dataObj: ${this.dataObj}`);
+        // console.log(`this.objectApiName: ${this.objectApiName}`);
 
     }
 
     async handleClick(event) {
-        console.log('Direccion: ' + this.address);
+        console.log(`Direccion: ${this.address}`);
 
         this.isLoading = true;
 
@@ -117,7 +157,7 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
                 // console.log('Direccion: ' + this.address);
             });
         }
-        console.log('Direccion: ' + this.address);
+        console.log(`Direccion: ${this.address}`);
 
     }
 
@@ -127,6 +167,9 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
         this.isLoading = true;
         this.isfirstTab = true;
         
+        
+
+
         /*if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
 
@@ -151,25 +194,69 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
         this.isLoading = true;
         this.isfirstTab = false;
 
-        console.log("isfirstTab: " + this.isfirstTab);
+        console.log(`isfirstTab: ${this.isfirstTab}`);
         this.toUpdateRecord();
     }
     addressInputChange(event) {
+        // console.log(`Value: field a fake??: ${event.detail.value}`);
+        // console.log(`Detail: field a fake??: ${JSON.stringify(event.detail)}`);
         this.address2 = event.detail.value;
-        console.log("field a fake??: " + this.address);
+        // console.log(`field a fake??: ${this.address}`);
         this.address2 = event.target.value;
-        console.log("field a fake??: " + this.address);
+        // console.log(`field a fake??: ${this.address}`);
 
         const fields = event.target;
+        
+        // console.log(`fields: field a fake??: ${JSON.stringify(fields)}`);
+        // console.log(`fields.street: field a fake??: ${fields.street}`);
+        // console.log(`fields.city: field a fake??: ${fields.city}`);
+        // console.log(`fields.province: field a fake??: ${fields.province}`);
+        // console.log(`fields.postalCode: field a fake??: ${fields.postalCode}`);
+        // console.log(`fields.country: field a fake??: ${fields.country}`);
+
+        
         this.street = fields.street;
         this.city = fields.city;
         this.province = fields.province;
         this.postalCode = fields.postalCode;
         this.country = fields.country;
+        
+        let dir = `${fields.street}+${fields.city}+${fields.postalCode}+${fields.province}+${fields.country}`;
+        dir = dir.replace(/ /g, '+');
+        dir = dir.replace(/\bnull\b/g, '');
+        dir = dir.replace(/^\++|\++$/g, '');
+        dir = dir.replace(/\++/g, '+');
+        
+        this.address  =  dir;
+            
+            try {
 
+                if(this.isfirstStart){
+                    this.isfirstStart = false;
+                    this.timeoutActive = true;
+                    this.fetchMapData();
+                }
+                else if (!this.timeoutActive) {
+                    this.timeoutActive = true;
+                    this.timeout = setTimeout(() => {
+                        this.fetchMapData();
+                        // console.log('Se ejecuta después de 2 segundos de inactividad o al terminar de escribir.');
+                    }, 2000);
+                }
 
-        this.setLocation(undefined, undefined);
-        console.log("addressInputChange?: ");
+                // console.log("addressInputChange UPDATED: ");
+            } catch (error) {
+                
+                // console.log("addressInputChange NO_UPDATED?: ");
+                throw new Error(`VALIDATION: ${Json.stringify(error)}` );
+            }
+
+        // }
+        
+        // this.dirIterator = (i > 2) ? 0 : (i + 1);
+
+        // // this.setLocation(undefined, undefined);
+        // console.log("addressInputChange?: ");
     }
 
     async toUpdateRecord() {
@@ -179,17 +266,20 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
 
         // console.log("AF.strCountryCodes: " + this.strCountryCodes);
 
-
-        const record = {
+        // console.log(`this.sobjectType: ${this.sobjectType}`);
+        // console.log(`this.dataObj: ${this.dataObj}`);
+        
+        let record = {
             sobjectType: this.sobjectType,
-            Id: this.recordid,
+            Id: this.relativeRecID,
 
             City: (this.city === undefined && this.isfirstTab == false) ? null : this.city,
             Country: (this.country === undefined && this.isfirstTab == false) ? null : this.country,
             PostalCode: (this.postalCode === undefined && this.isfirstTab == false) ? null : this.postalCode,
             Street: (this.street === undefined && this.isfirstTab == false) ? null : this.street,
             State: (this.strState === undefined && this.isfirstTab == false) ? null : this.strState,
-            DireccionDetallada__c: ((this.street === undefined && this.isfirstTab == false) ? '' : this.street) +' '+ 
+            direccionDetallada__c: ((this.street === undefined && this.isfirstTab == false) ? '' : this.street) +' '+ 
+                                ((this.postalCode === undefined && this.isfirstTab == false) ? '' : this.postalCode) +' '+
                                 ((this.city === undefined && this.isfirstTab == false) ? '' : this.city) + ' '+
                                 ((this.country === undefined && this.isfirstTab == false) ? '' : this.country),
 
@@ -209,7 +299,7 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
 
 
         };
-        // console.log('1record: ' + JSON.stringify(record));
+        // console.log(`1record: ${JSON.stringify(record)}`);
 
 
         toUpdateRecord({ record: record, isFirstTab: this.isfirstTab })
@@ -221,40 +311,9 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
                         variant: 'success'
                     })
                 );
-                // console.log('2record: ' + JSON.stringify(record));
-                if (this.isfirstTab == true) {
-                    this.isfirstTab = false;
-                    toUpdateRecord({ record: record, isFirstTab: this.isfirstTab })
-                        .then(() => {
-                            this.isLoading = false;
-                            this.dispatchEvent(
-                                new ShowToastEvent({
-                                    title: 'Success',
-                                    message: 'Ubicación actualizada',
-                                    variant: 'success'
-                                })
-                            );
-                            this.navigateToViewLeadPage(this.recordid);
-
-                            // Display fresh data in the form
-                            // return refreshApex(this.contact);
-                        })
-                        .catch(error => {
-                            this.isLoading = false;
-                            this.dispatchEvent(
-                                new ShowToastEvent({
-                                    title: 'Error actualizando ubicación',
-                                    message: error.body.message,
-                                    variant: 'error'
-                                })
-                            );
-                        });
-                } else {
                     this.isLoading = false;
-                    this.navigateToViewLeadPage(this.recordid);
-                }
-                // Display fresh data in the form
-                // return refreshApex(this.contact);
+                    this.navigateToViewLeadPage(this.relativeRecID);
+            
             })
             .catch(error => {
                 this.isLoading = false;
@@ -271,7 +330,7 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
     //Se separo en 2 handleChange para utilizar el event.target.value y corregir el undefine en el setLocation 13/06/2023
     handleChangeLatitude(event) {
 
-        console.log('latitude value: ' + JSON.stringify(event.target.value));
+        // console.log(`latitude value: ${JSON.stringify(event.target.value)}`);
         this.latitude = event.target.value;
         this.setLocation(this.latitude, this.longitude);
 
@@ -279,7 +338,7 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
 
     handleChangeLongitude(event) {
 
-        console.log('longitude value: ' + JSON.stringify(event.target.value));
+        // console.log(`longitude value: ${JSON.stringify(event.target.value)}`);
         this.longitude = event.target.value;
         this.setLocation(this.latitude, this.longitude);
 
@@ -301,11 +360,11 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
 
 
     // Navigate to View Lead Page
-    navigateToViewLeadPage(leadId) {
+    navigateToViewLeadPage(recId) {
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',
             attributes: {
-                recordId: leadId,
+                recordId: recId,
                 objectApiName: this.sobjectType,
                 actionName: 'view'
             },
@@ -314,1044 +373,313 @@ export default class CurrentLocationLWC extends NavigationMixin(LightningElement
 
     handleMarkerSelect(event) {
         console.log({ event })
-        console.log(JSON.stringify(event))
+        // console.log(`handleMarkerSelect: ${JSON.stringify(event)}`)
     }
     selectedMarkerValue(event) {
         console.log({ event })
-        console.log(JSON.stringify(event))
+        // console.log(`selectedMarkerValue: ${JSON.stringify(event)}`)
 
     }
-
     getCountryCode(countryName) {
-        // const countryCodes = this.countryCodesList;
-        const countryCodes = [
-            {
-                "countryCode": "AD",
-                "countryName": "Andorra"
-            },
-            {
-                "countryCode": "AE",
-                "countryName": "United Arab Emirates"
-            },
-            {
-                "countryCode": "AF",
-                "countryName": "Afghanistan"
-            },
-            {
-                "countryCode": "AG",
-                "countryName": "Antigua and Barbuda"
-            },
-            {
-                "countryCode": "AI",
-                "countryName": "Anguilla"
-            },
-            {
-                "countryCode": "AL",
-                "countryName": "Albania"
-            },
-            {
-                "countryCode": "AM",
-                "countryName": "Armenia"
-            },
-            {
-                "countryCode": "AO",
-                "countryName": "Angola"
-            },
-            {
-                "countryCode": "AQ",
-                "countryName": "Antarctica"
-            },
-            {
-                "countryCode": "AR",
-                "countryName": "Argentina"
-            },
-            {
-                "countryCode": "AS",
-                "countryName": "American Samoa"
-            },
-            {
-                "countryCode": "AT",
-                "countryName": "Austria"
-            },
-            {
-                "countryCode": "AU",
-                "countryName": "Australia"
-            },
-            {
-                "countryCode": "AW",
-                "countryName": "Aruba"
-            },
-            {
-                "countryCode": "AX",
-                "countryName": "Åland"
-            },
-            {
-                "countryCode": "AZ",
-                "countryName": "Azerbaijan"
-            },
-            {
-                "countryCode": "BA",
-                "countryName": "Bosnia and Herzegovina"
-            },
-            {
-                "countryCode": "BB",
-                "countryName": "Barbados"
-            },
-            {
-                "countryCode": "BD",
-                "countryName": "Bangladesh"
-            },
-            {
-                "countryCode": "BE",
-                "countryName": "Belgium"
-            },
-            {
-                "countryCode": "BF",
-                "countryName": "Burkina Faso"
-            },
-            {
-                "countryCode": "BG",
-                "countryName": "Bulgaria"
-            },
-            {
-                "countryCode": "BH",
-                "countryName": "Bahrain"
-            },
-            {
-                "countryCode": "BI",
-                "countryName": "Burundi"
-            },
-            {
-                "countryCode": "BJ",
-                "countryName": "Benin"
-            },
-            {
-                "countryCode": "BL",
-                "countryName": "Saint Barthélemy"
-            },
-            {
-                "countryCode": "BM",
-                "countryName": "Bermuda"
-            },
-            {
-                "countryCode": "BN",
-                "countryName": "Brunei"
-            },
-            {
-                "countryCode": "BO",
-                "countryName": "Bolivia"
-            },
-            {
-                "countryCode": "BQ",
-                "countryName": "Bonaire"
-            },
-            {
-                "countryCode": "BR",
-                "countryName": "Brazil"
-            },
-            {
-                "countryCode": "BS",
-                "countryName": "Bahamas"
-            },
-            {
-                "countryCode": "BT",
-                "countryName": "Bhutan"
-            },
-            {
-                "countryCode": "BV",
-                "countryName": "Bouvet Island"
-            },
-            {
-                "countryCode": "BW",
-                "countryName": "Botswana"
-            },
-            {
-                "countryCode": "BY",
-                "countryName": "Belarus"
-            },
-            {
-                "countryCode": "BZ",
-                "countryName": "Belize"
-            },
-            {
-                "countryCode": "CA",
-                "countryName": "Canada"
-            },
-            {
-                "countryCode": "CC",
-                "countryName": "Cocos [Keeling] Islands"
-            },
-            {
-                "countryCode": "CD",
-                "countryName": "Democratic Republic of the Congo"
-            },
-            {
-                "countryCode": "CF",
-                "countryName": "Central African Republic"
-            },
-            {
-                "countryCode": "CG",
-                "countryName": "Republic of the Congo"
-            },
-            {
-                "countryCode": "CH",
-                "countryName": "Switzerland"
-            },
-            {
-                "countryCode": "CI",
-                "countryName": "Ivory Coast"
-            },
-            {
-                "countryCode": "CK",
-                "countryName": "Cook Islands"
-            },
-            {
-                "countryCode": "CL",
-                "countryName": "Chile"
-            },
-            {
-                "countryCode": "CM",
-                "countryName": "Cameroon"
-            },
-            {
-                "countryCode": "CN",
-                "countryName": "China"
-            },
-            {
-                "countryCode": "CO",
-                "countryName": "Colombia"
-            },
-            {
-                "countryCode": "CR",
-                "countryName": "Costa Rica"
-            },
-            {
-                "countryCode": "CU",
-                "countryName": "Cuba"
-            },
-            {
-                "countryCode": "CV",
-                "countryName": "Cape Verde"
-            },
-            {
-                "countryCode": "CW",
-                "countryName": "Curacao"
-            },
-            {
-                "countryCode": "CX",
-                "countryName": "Christmas Island"
-            },
-            {
-                "countryCode": "CY",
-                "countryName": "Cyprus"
-            },
-            {
-                "countryCode": "CZ",
-                "countryName": "Czech Republic"
-            },
-            {
-                "countryCode": "DE",
-                "countryName": "Germany"
-            },
-            {
-                "countryCode": "DJ",
-                "countryName": "Djibouti"
-            },
-            {
-                "countryCode": "DK",
-                "countryName": "Denmark"
-            },
-            {
-                "countryCode": "DM",
-                "countryName": "Dominica"
-            },
-            {
-                "countryCode": "DO",
-                "countryName": "Dominican Republic"
-            },
-            {
-                "countryCode": "DZ",
-                "countryName": "Algeria"
-            },
-            {
-                "countryCode": "EC",
-                "countryName": "Ecuador"
-            },
-            {
-                "countryCode": "EE",
-                "countryName": "Estonia"
-            },
-            {
-                "countryCode": "EG",
-                "countryName": "Egypt"
-            },
-            {
-                "countryCode": "EH",
-                "countryName": "Western Sahara"
-            },
-            {
-                "countryCode": "ER",
-                "countryName": "Eritrea"
-            },
-            {
-                "countryCode": "ES",
-                "countryName": "Spain"
-            },
-            {
-                "countryCode": "ET",
-                "countryName": "Ethiopia"
-            },
-            {
-                "countryCode": "FI",
-                "countryName": "Finland"
-            },
-            {
-                "countryCode": "FJ",
-                "countryName": "Fiji"
-            },
-            {
-                "countryCode": "FK",
-                "countryName": "Falkland Islands"
-            },
-            {
-                "countryCode": "FM",
-                "countryName": "Micronesia"
-            },
-            {
-                "countryCode": "FO",
-                "countryName": "Faroe Islands"
-            },
-            {
-                "countryCode": "FR",
-                "countryName": "France"
-            },
-            {
-                "countryCode": "GA",
-                "countryName": "Gabon"
-            },
-            {
-                "countryCode": "GB",
-                "countryName": "United Kingdom"
-            },
-            {
-                "countryCode": "GD",
-                "countryName": "Grenada"
-            },
-            {
-                "countryCode": "GE",
-                "countryName": "Georgia"
-            },
-            {
-                "countryCode": "GF",
-                "countryName": "French Guiana"
-            },
-            {
-                "countryCode": "GG",
-                "countryName": "Guernsey"
-            },
-            {
-                "countryCode": "GH",
-                "countryName": "Ghana"
-            },
-            {
-                "countryCode": "GI",
-                "countryName": "Gibraltar"
-            },
-            {
-                "countryCode": "GL",
-                "countryName": "Greenland"
-            },
-            {
-                "countryCode": "GM",
-                "countryName": "Gambia"
-            },
-            {
-                "countryCode": "GN",
-                "countryName": "Guinea"
-            },
-            {
-                "countryCode": "GP",
-                "countryName": "Guadeloupe"
-            },
-            {
-                "countryCode": "GQ",
-                "countryName": "Equatorial Guinea"
-            },
-            {
-                "countryCode": "GR",
-                "countryName": "Greece"
-            },
-            {
-                "countryCode": "GS",
-                "countryName": "South Georgia and the South Sandwich Islands"
-            },
-            {
-                "countryCode": "GT",
-                "countryName": "Guatemala"
-            },
-            {
-                "countryCode": "GU",
-                "countryName": "Guam"
-            },
-            {
-                "countryCode": "GW",
-                "countryName": "Guinea-Bissau"
-            },
-            {
-                "countryCode": "GY",
-                "countryName": "Guyana"
-            },
-            {
-                "countryCode": "HK",
-                "countryName": "Hong Kong"
-            },
-            {
-                "countryCode": "HM",
-                "countryName": "Heard Island and McDonald Islands"
-            },
-            {
-                "countryCode": "HN",
-                "countryName": "Honduras"
-            },
-            {
-                "countryCode": "HR",
-                "countryName": "Croatia"
-            },
-            {
-                "countryCode": "HT",
-                "countryName": "Haiti"
-            },
-            {
-                "countryCode": "HU",
-                "countryName": "Hungary"
-            },
-            {
-                "countryCode": "ID",
-                "countryName": "Indonesia"
-            },
-            {
-                "countryCode": "IE",
-                "countryName": "Ireland"
-            },
-            {
-                "countryCode": "IL",
-                "countryName": "Israel"
-            },
-            {
-                "countryCode": "IM",
-                "countryName": "Isle of Man"
-            },
-            {
-                "countryCode": "IN",
-                "countryName": "India"
-            },
-            {
-                "countryCode": "IO",
-                "countryName": "British Indian Ocean Territory"
-            },
-            {
-                "countryCode": "IQ",
-                "countryName": "Iraq"
-            },
-            {
-                "countryCode": "IR",
-                "countryName": "Iran"
-            },
-            {
-                "countryCode": "IS",
-                "countryName": "Iceland"
-            },
-            {
-                "countryCode": "IT",
-                "countryName": "Italy"
-            },
-            {
-                "countryCode": "JE",
-                "countryName": "Jersey"
-            },
-            {
-                "countryCode": "JM",
-                "countryName": "Jamaica"
-            },
-            {
-                "countryCode": "JO",
-                "countryName": "Jordan"
-            },
-            {
-                "countryCode": "JP",
-                "countryName": "Japan"
-            },
-            {
-                "countryCode": "KE",
-                "countryName": "Kenya"
-            },
-            {
-                "countryCode": "KG",
-                "countryName": "Kyrgyzstan"
-            },
-            {
-                "countryCode": "KH",
-                "countryName": "Cambodia"
-            },
-            {
-                "countryCode": "KI",
-                "countryName": "Kiribati"
-            },
-            {
-                "countryCode": "KM",
-                "countryName": "Comoros"
-            },
-            {
-                "countryCode": "KN",
-                "countryName": "Saint Kitts and Nevis"
-            },
-            {
-                "countryCode": "KP",
-                "countryName": "North Korea"
-            },
-            {
-                "countryCode": "KR",
-                "countryName": "South Korea"
-            },
-            {
-                "countryCode": "KW",
-                "countryName": "Kuwait"
-            },
-            {
-                "countryCode": "KY",
-                "countryName": "Cayman Islands"
-            },
-            {
-                "countryCode": "KZ",
-                "countryName": "Kazakhstan"
-            },
-            {
-                "countryCode": "LA",
-                "countryName": "Laos"
-            },
-            {
-                "countryCode": "LB",
-                "countryName": "Lebanon"
-            },
-            {
-                "countryCode": "LC",
-                "countryName": "Saint Lucia"
-            },
-            {
-                "countryCode": "LI",
-                "countryName": "Liechtenstein"
-            },
-            {
-                "countryCode": "LK",
-                "countryName": "Sri Lanka"
-            },
-            {
-                "countryCode": "LR",
-                "countryName": "Liberia"
-            },
-            {
-                "countryCode": "LS",
-                "countryName": "Lesotho"
-            },
-            {
-                "countryCode": "LT",
-                "countryName": "Lithuania"
-            },
-            {
-                "countryCode": "LU",
-                "countryName": "Luxembourg"
-            },
-            {
-                "countryCode": "LV",
-                "countryName": "Latvia"
-            },
-            {
-                "countryCode": "LY",
-                "countryName": "Libya"
-            },
-            {
-                "countryCode": "MA",
-                "countryName": "Morocco"
-            },
-            {
-                "countryCode": "MC",
-                "countryName": "Monaco"
-            },
-            {
-                "countryCode": "MD",
-                "countryName": "Moldova"
-            },
-            {
-                "countryCode": "ME",
-                "countryName": "Montenegro"
-            },
-            {
-                "countryCode": "MF",
-                "countryName": "Saint Martin"
-            },
-            {
-                "countryCode": "MG",
-                "countryName": "Madagascar"
-            },
-            {
-                "countryCode": "MH",
-                "countryName": "Marshall Islands"
-            },
-            {
-                "countryCode": "MK",
-                "countryName": "Macedonia"
-            },
-            {
-                "countryCode": "ML",
-                "countryName": "Mali"
-            },
-            {
-                "countryCode": "MM",
-                "countryName": "Myanmar [Burma]"
-            },
-            {
-                "countryCode": "MN",
-                "countryName": "Mongolia"
-            },
-            {
-                "countryCode": "MO",
-                "countryName": "Macao"
-            },
-            {
-                "countryCode": "MP",
-                "countryName": "Northern Mariana Islands"
-            },
-            {
-                "countryCode": "MQ",
-                "countryName": "Martinique"
-            },
-            {
-                "countryCode": "MR",
-                "countryName": "Mauritania"
-            },
-            {
-                "countryCode": "MS",
-                "countryName": "Montserrat"
-            },
-            {
-                "countryCode": "MT",
-                "countryName": "Malta"
-            },
-            {
-                "countryCode": "MU",
-                "countryName": "Mauritius"
-            },
-            {
-                "countryCode": "MV",
-                "countryName": "Maldives"
-            },
-            {
-                "countryCode": "MW",
-                "countryName": "Malawi"
-            },
-            {
-                "countryCode": "MX",
-                "countryName": "Mexico"
-            },
-            {
-                "countryCode": "MY",
-                "countryName": "Malaysia"
-            },
-            {
-                "countryCode": "MZ",
-                "countryName": "Mozambique"
-            },
-            {
-                "countryCode": "NA",
-                "countryName": "Namibia"
-            },
-            {
-                "countryCode": "NC",
-                "countryName": "New Caledonia"
-            },
-            {
-                "countryCode": "NE",
-                "countryName": "Niger"
-            },
-            {
-                "countryCode": "NF",
-                "countryName": "Norfolk Island"
-            },
-            {
-                "countryCode": "NG",
-                "countryName": "Nigeria"
-            },
-            {
-                "countryCode": "NI",
-                "countryName": "Nicaragua"
-            },
-            {
-                "countryCode": "NL",
-                "countryName": "Netherlands"
-            },
-            {
-                "countryCode": "NO",
-                "countryName": "Norway"
-            },
-            {
-                "countryCode": "NP",
-                "countryName": "Nepal"
-            },
-            {
-                "countryCode": "NR",
-                "countryName": "Nauru"
-            },
-            {
-                "countryCode": "NU",
-                "countryName": "Niue"
-            },
-            {
-                "countryCode": "NZ",
-                "countryName": "New Zealand"
-            },
-            {
-                "countryCode": "OM",
-                "countryName": "Oman"
-            },
-            {
-                "countryCode": "PA",
-                "countryName": "Panama"
-            },
-            {
-                "countryCode": "PE",
-                "countryName": "Peru"
-            },
-            {
-                "countryCode": "PF",
-                "countryName": "French Polynesia"
-            },
-            {
-                "countryCode": "PG",
-                "countryName": "Papua New Guinea"
-            },
-            {
-                "countryCode": "PH",
-                "countryName": "Philippines"
-            },
-            {
-                "countryCode": "PK",
-                "countryName": "Pakistan"
-            },
-            {
-                "countryCode": "PL",
-                "countryName": "Poland"
-            },
-            {
-                "countryCode": "PM",
-                "countryName": "Saint Pierre and Miquelon"
-            },
-            {
-                "countryCode": "PN",
-                "countryName": "Pitcairn Islands"
-            },
-            {
-                "countryCode": "PR",
-                "countryName": "Puerto Rico"
-            },
-            {
-                "countryCode": "PS",
-                "countryName": "Palestine"
-            },
-            {
-                "countryCode": "PT",
-                "countryName": "Portugal"
-            },
-            {
-                "countryCode": "PW",
-                "countryName": "Palau"
-            },
-            {
-                "countryCode": "PY",
-                "countryName": "Paraguay"
-            },
-            {
-                "countryCode": "QA",
-                "countryName": "Qatar"
-            },
-            {
-                "countryCode": "RE",
-                "countryName": "Réunion"
-            },
-            {
-                "countryCode": "RO",
-                "countryName": "Romania"
-            },
-            {
-                "countryCode": "RS",
-                "countryName": "Serbia"
-            },
-            {
-                "countryCode": "RU",
-                "countryName": "Russia"
-            },
-            {
-                "countryCode": "RW",
-                "countryName": "Rwanda"
-            },
-            {
-                "countryCode": "SA",
-                "countryName": "Saudi Arabia"
-            },
-            {
-                "countryCode": "SB",
-                "countryName": "Solomon Islands"
-            },
-            {
-                "countryCode": "SC",
-                "countryName": "Seychelles"
-            },
-            {
-                "countryCode": "SD",
-                "countryName": "Sudan"
-            },
-            {
-                "countryCode": "SE",
-                "countryName": "Sweden"
-            },
-            {
-                "countryCode": "SG",
-                "countryName": "Singapore"
-            },
-            {
-                "countryCode": "SH",
-                "countryName": "Saint Helena"
-            },
-            {
-                "countryCode": "SI",
-                "countryName": "Slovenia"
-            },
-            {
-                "countryCode": "SJ",
-                "countryName": "Svalbard and Jan Mayen"
-            },
-            {
-                "countryCode": "SK",
-                "countryName": "Slovakia"
-            },
-            {
-                "countryCode": "SL",
-                "countryName": "Sierra Leone"
-            },
-            {
-                "countryCode": "SM",
-                "countryName": "San Marino"
-            },
-            {
-                "countryCode": "SN",
-                "countryName": "Senegal"
-            },
-            {
-                "countryCode": "SO",
-                "countryName": "Somalia"
-            },
-            {
-                "countryCode": "SR",
-                "countryName": "Suriname"
-            },
-            {
-                "countryCode": "SS",
-                "countryName": "South Sudan"
-            },
-            {
-                "countryCode": "ST",
-                "countryName": "São Tomé and Príncipe"
-            },
-            {
-                "countryCode": "SV",
-                "countryName": "El Salvador"
-            },
-            {
-                "countryCode": "SX",
-                "countryName": "Sint Maarten"
-            },
-            {
-                "countryCode": "SY",
-                "countryName": "Syria"
-            },
-            {
-                "countryCode": "SZ",
-                "countryName": "Swaziland"
-            },
-            {
-                "countryCode": "TC",
-                "countryName": "Turks and Caicos Islands"
-            },
-            {
-                "countryCode": "TD",
-                "countryName": "Chad"
-            },
-            {
-                "countryCode": "TF",
-                "countryName": "French Southern Territories"
-            },
-            {
-                "countryCode": "TG",
-                "countryName": "Togo"
-            },
-            {
-                "countryCode": "TH",
-                "countryName": "Thailand"
-            },
-            {
-                "countryCode": "TJ",
-                "countryName": "Tajikistan"
-            },
-            {
-                "countryCode": "TK",
-                "countryName": "Tokelau"
-            },
-            {
-                "countryCode": "TL",
-                "countryName": "East Timor"
-            },
-            {
-                "countryCode": "TM",
-                "countryName": "Turkmenistan"
-            },
-            {
-                "countryCode": "TN",
-                "countryName": "Tunisia"
-            },
-            {
-                "countryCode": "TO",
-                "countryName": "Tonga"
-            },
-            {
-                "countryCode": "TR",
-                "countryName": "Turkey"
-            },
-            {
-                "countryCode": "TT",
-                "countryName": "Trinidad and Tobago"
-            },
-            {
-                "countryCode": "TV",
-                "countryName": "Tuvalu"
-            },
-            {
-                "countryCode": "TW",
-                "countryName": "Taiwan"
-            },
-            {
-                "countryCode": "TZ",
-                "countryName": "Tanzania"
-            },
-            {
-                "countryCode": "UA",
-                "countryName": "Ukraine"
-            },
-            {
-                "countryCode": "UG",
-                "countryName": "Uganda"
-            },
-            {
-                "countryCode": "UM",
-                "countryName": "U.S. Minor Outlying Islands"
-            },
-            {
-                "countryCode": "US",
-                "countryName": "United States"
-            },
-            {
-                "countryCode": "UY",
-                "countryName": "Uruguay"
-            },
-            {
-                "countryCode": "UZ",
-                "countryName": "Uzbekistan"
-            },
-            {
-                "countryCode": "VA",
-                "countryName": "Vatican City"
-            },
-            {
-                "countryCode": "VC",
-                "countryName": "Saint Vincent and the Grenadines"
-            },
-            {
-                "countryCode": "VE",
-                "countryName": "Venezuela"
-            },
-            {
-                "countryCode": "VG",
-                "countryName": "British Virgin Islands"
-            },
-            {
-                "countryCode": "VI",
-                "countryName": "U.S. Virgin Islands"
-            },
-            {
-                "countryCode": "VN",
-                "countryName": "Vietnam"
-            },
-            {
-                "countryCode": "VU",
-                "countryName": "Vanuatu"
-            },
-            {
-                "countryCode": "WF",
-                "countryName": "Wallis and Futuna"
-            },
-            {
-                "countryCode": "WS",
-                "countryName": "Samoa"
-            },
-            {
-                "countryCode": "XK",
-                "countryName": "Kosovo"
-            },
-            {
-                "countryCode": "YE",
-                "countryName": "Yemen"
-            },
-            {
-                "countryCode": "YT",
-                "countryName": "Mayotte"
-            },
-            {
-                "countryCode": "ZA",
-                "countryName": "South Africa"
-            },
-            {
-                "countryCode": "ZM",
-                "countryName": "Zambia"
-            },
-            {
-                "countryCode": "ZW",
-                "countryName": "Zimbabwe"
-            }
-        ];
+    
+    // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+    const countryCodes = {"Andorra": "AD",
+        "United Arab Emirates": "AE",
+        "Afghanistan": "AF",
+        "Antigua and Barbuda": "AG",
+        "Anguilla": "AI",
+        "Albania": "AL",
+        "Armenia": "AM",
+        "Angola": "AO",
+        "Antarctica": "AQ",
+        "Argentina": "AR",
+        "American Samoa": "AS",
+        "Austria": "AT",
+        "Australia": "AU",
+        "Aruba": "AW",
+        "Åland": "AX",
+        "Azerbaijan": "AZ",
+        "Bosnia and Herzegovina": "BA",
+        "Barbados": "BB",
+        "Bangladesh": "BD",
+        "Belgium": "BE",
+        "Burkina Faso": "BF",
+        "Bulgaria": "BG",
+        "Bahrain": "BH",
+        "Burundi": "BI",
+        "Benin": "BJ",
+        "Saint Barthélemy": "BL",
+        "Bermuda": "BM",
+        "Brunei": "BN",
+        "Bolivia": "BO",
+        "Bonaire": "BQ",
+        "Brazil": "BR",
+        "Bahamas": "BS",
+        "Bhutan": "BT",
+        "Bouvet Island": "BV",
+        "Botswana": "BW",
+        "Belarus": "BY",
+        "Belize": "BZ",
+        "Canada": "CA",
+        "Cocos [Keeling] Islands": "CC",
+        "Democratic Republic of the Congo": "CD",
+        "Central African Republic": "CF",
+        "Republic of the Congo": "CG",
+        "Switzerland": "CH",
+        "Ivory Coast": "CI",
+        "Cook Islands": "CK",
+        "Chile": "CL",
+        "Cameroon": "CM",
+        "China": "CN",
+        "Colombia": "CO",
+        "Costa Rica": "CR",
+        "Cuba": "CU",
+        "Cape Verde": "CV",
+        "Curacao": "CW",
+        "Christmas Island": "CX",
+        "Cyprus": "CY",
+        "Czech Republic": "CZ",
+        "Germany": "DE",
+        "Djibouti": "DJ",
+        "Denmark": "DK",
+        "Dominica": "DM",
+        "Dominican Republic": "DO",
+        "Algeria": "DZ",
+        "Ecuador": "EC",
+        "Estonia": "EE",
+        "Egypt": "EG",
+        "Western Sahara": "EH",
+        "Eritrea": "ER",
+        "Spain": "ES",
+        "Ethiopia": "ET",
+        "Finland": "FI",
+        "Fiji": "FJ",
+        "Falkland Islands": "FK",
+        "Micronesia": "FM",
+        "Faroe Islands": "FO",
+        "France": "FR",
+        "Gabon": "GA",
+        "United Kingdom": "GB",
+        "Grenada": "GD",
+        "Georgia": "GE",
+        "French Guiana": "GF",
+        "Guernsey": "GG",
+        "Ghana": "GH",
+        "Gibraltar": "GI",
+        "Greenland": "GL",
+        "Gambia": "GM",
+        "Guinea": "GN",
+        "Guadeloupe": "GP",
+        "Equatorial Guinea": "GQ",
+        "Greece": "GR",
+        "South Georgia and the South Sandwich Islands": "GS",
+        "Guatemala": "GT",
+        "Guam": "GU",
+        "Guinea-Bissau": "GW",
+        "Guyana": "GY",
+        "Hong Kong": "HK",
+        "Heard Island and McDonald Islands": "HM",
+        "Honduras": "HN",
+        "Croatia": "HR",
+        "Haiti": "HT",
+        "Hungary": "HU",
+        "Indonesia": "ID",
+        "Ireland": "IE",
+        "Israel": "IL",
+        "Isle of Man": "IM",
+        "India": "IN",
+        "British Indian Ocean Territory": "IO",
+        "Iraq": "IQ",
+        "Iran": "IR",
+        "Iceland": "IS",
+        "Italy": "IT",
+        "Jersey": "JE",
+        "Jamaica": "JM",
+        "Jordan": "JO",
+        "Japan": "JP",
+        "Kenya": "KE",
+        "Kyrgyzstan": "KG",
+        "Cambodia": "KH",
+        "Kiribati": "KI",
+        "Comoros": "KM",
+        "Saint Kitts and Nevis": "KN",
+        "North Korea": "KP",
+        "South Korea": "KR",
+        "Kuwait": "KW",
+        "Cayman Islands": "KY",
+        "Kazakhstan": "KZ",
+        "Laos": "LA",
+        "Lebanon": "LB",
+        "Saint Lucia": "LC",
+        "Liechtenstein": "LI",
+        "Sri Lanka": "LK",
+        "Liberia": "LR",
+        "Lesotho": "LS",
+        "Lithuania": "LT",
+        "Luxembourg": "LU",
+        "Latvia": "LV",
+        "Libya": "LY",
+        "Morocco": "MA",
+        "Monaco": "MC",
+        "Moldova": "MD",
+        "Montenegro": "ME",
+        "Saint Martin": "MF",
+        "Madagascar": "MG",
+        "Marshall Islands": "MH",
+        "Macedonia": "MK",
+        "Mali": "ML",
+        "Myanmar [Burma]": "MM",
+        "Mongolia": "MN",
+        "Macao": "MO",
+        "Northern Mariana Islands": "MP",
+        "Martinique": "MQ",
+        "Mauritania": "MR",
+        "Montserrat": "MS",
+        "Malta": "MT",
+        "Mauritius": "MU",
+        "Maldives": "MV",
+        "Malawi": "MW",
+        "Mexico": "MX",
+        "Malaysia": "MY",
+        "Mozambique": "MZ",
+        "Namibia": "NA",
+        "New Caledonia": "NC",
+        "Niger": "NE",
+        "Norfolk Island": "NF",
+        "Nigeria": "NG",
+        "Nicaragua": "NI",
+        "Netherlands": "NL",
+        "Norway": "NO",
+        "Nepal": "NP",
+        "Nauru": "NR",
+        "Niue": "NU",
+        "New Zealand": "NZ",
+        "Oman": "OM",
+        "Panama": "PA",
+        "Peru": "PE",
+        "French Polynesia": "PF",
+        "Papua New Guinea": "PG",
+        "Philippines": "PH",
+        "Pakistan": "PK",
+        "Poland": "PL",
+        "Saint Pierre and Miquelon": "PM",
+        "Pitcairn Islands": "PN",
+        "Puerto Rico": "PR",
+        "Palestine": "PS",
+        "Portugal": "PT",
+        "Palau": "PW",
+        "Paraguay": "PY",
+        "Qatar": "QA",
+        "Réunion": "RE",
+        "Romania": "RO",
+        "Serbia": "RS",
+        "Russia": "RU",
+        "Rwanda": "RW",
+        "Saudi Arabia": "SA",
+        "Solomon Islands": "SB",
+        "Seychelles": "SC",
+        "Sudan": "SD",
+        "Sweden": "SE",
+        "Singapore": "SG",
+        "Saint Helena": "SH",
+        "Slovenia": "SI",
+        "Svalbard and Jan Mayen": "SJ",
+        "Slovakia": "SK",
+        "Sierra Leone": "SL",
+        "San Marino": "SM",
+        "Senegal": "SN",
+        "Somalia": "SO",
+        "Suriname": "SR",
+        "South Sudan": "SS",
+        "São Tomé and Príncipe": "ST",
+        "El Salvador": "SV",
+        "Sint Maarten": "SX",
+        "Syria": "SY",
+        "Swaziland": "SZ",
+        "Turks and Caicos Islands": "TC",
+        "Chad": "TD",
+        "French Southern Territories": "TF",
+        "Togo": "TG",
+        "Thailand": "TH",
+        "Tajikistan": "TJ",
+        "Tokelau": "TK",
+        "Timor-Leste": "TL",
+        "Turkmenistan": "TM",
+        "Tunisia": "TN",
+        "Tonga": "TO",
+        "Turkey": "TR",
+        "Trinidad and Tobago": "TT",
+        "Tuvalu": "TV",
+        "Taiwan": "TW",
+        "Tanzania": "TZ",
+        "Ukraine": "UA",
+        "Uganda": "UG",
+        "U.S. Minor Outlying Islands": "UM",
+        "United States": "US",
+        "Uruguay": "UY",
+        "Uzbekistan": "UZ",
+        "Vatican City": "VA",
+        "Saint Vincent and the Grenadines": "VC",
+        "Venezuela": "VE",
+        "British Virgin Islands": "VG",
+        "U.S. Virgin Islands": "VI",
+        "Vietnam": "VN",
+        "Vanuatu": "VU",
+        "Wallis and Futuna": "WF",
+        "Samoa": "WS",
+        "Kosovo": "XK",
+        "Yemen": "YE",
+        "Mayotte": "YT",
+        "South Africa": "ZA",
+        "Zambia": "ZM",
+        "Zimbabwe": "ZW"
+    };
+    
+        // console.log(`countryName1: ${countryName}` );
+        // console.log(`countryCode1: ${countryCodes[countryName]}` );
+        this.strCountryCodes = countryCodes[(countryName)];
         
-        // console.log('countryName_ ' + countryName);
-        // console.log('countryName_ ' + countryName);
-        // console.log('this.country ' + this.country);
-        // console.log('countryCodes ' + countryCodes);
-        try {
-            if (countryName != undefined) {
-                const filterText = (countryName).toLowerCase();
-                if (filterText.legth != 0 || filterText != undefined || filterText != '') {
-                    try {
-                        const country = countryCodes.find(obj => obj.countryName === countryName);
-                        this.strCountryCodes = country ? country.countryCode : null;
-                        // console.log("this.strCountryCodes: " + this.strCountryCodes);
-                    } catch (error) {
-                        console.log("error onfilter: "+error.message)
-                        console.log("error onfilter: "+JSON.stringify(error))
+    }
+
+    fetchMapData() {
+        let addString = this.address;
+
+        if(addString.length > 3 & addString!= null || addString != undefined ){
+            const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${addString}&key=${API_KEY}`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
                     }
-                    
-                }
-            }
-
-        } catch (error) {
-            console.log("error JSON: "+JSON.stringify(error))
-            
+                    return response.json();
+                })
+                .then(data => {
+                    // Maneja la respuesta de la API de Google Maps
+                    this.mapData = data;
+                    // console.log('Datos del mapa:', this.mapData);
+                    // console.log('Datos del mapa:', JSON.stringify(this.mapData));
+                    // console.log('this.sobjectType,:', this.sobjectType,);
+                    this.latitude = data.results[0].geometry.location.lat;
+                    this.longitude = data.results[0].geometry.location.lng;
+                    // console.log('Datos del mapalatitude:', this.latitude);
+                    // console.log('Datos del mapalongitude:', this.longitude);
+                    this.setLocation(this.latitude, this.longitude);
+                    this.timeoutActive = false;
+                })
+                .catch(error => {
+                    // Maneja errores si los hay
+                    console.error('Hubo un problema con la solicitud fetch:', error.message);
+                    this.dispatchEvent(
+                        new ShowToastEvent({
+                            title: 'Error actualizando ubicación',
+                            message: error.message,
+                            variant: 'error'
+                        })
+                    );
+                    this.timeoutActive = false;
+            });
         }
-
     }
 
 }
