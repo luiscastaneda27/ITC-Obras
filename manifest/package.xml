@@ -12,8 +12,13 @@
         <name>ApexPage</name>
     </types>
 	<types>
+		<members>CurrentLocationAura</members>
 		<members>newObraAura</members>
 		<name>AuraDefinitionBundle</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>CspTrustedSite</name>
 	</types>
     <types>
     	<members>ContactoObra__c.ContactoCliente__c</members>
@@ -194,6 +199,10 @@
     <types>
 		<members>currentLocationLWC</members>
 		<name>LightningComponentBundle</name>
+	</types>
+	<types>
+		<members>GoogleMaps</members>
+		<name>RemoteSiteSetting</name>
 	</types>
     <version>58.0</version>
 </Package>
