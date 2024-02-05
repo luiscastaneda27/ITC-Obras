@@ -4,16 +4,81 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>CustomButton.Obra__c.NewRelationObra</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.EstadoObra__c}</leftValue>
+                                    <operator>NE</operator>
+                                    <rightValue>Cancelada</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Obra__c.RegistrarContactoRelacionado</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.EstadoObra__c}</leftValue>
+                                    <operator>NE</operator>
+                                    <rightValue>Cancelada</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Obra__c.CrearPotencialVenta</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.EstadoObra__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Levantamiento / Validación de Información</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CustomButton.Obra__c.NuevoRegistroManualVenta</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.EstadoObra__c}</leftValue>
+                                    <operator>NE</operator>
+                                    <rightValue>Cancelada</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Obra__c.ActualizarUbicacion</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.EstadoObra__c}</leftValue>
+                                    <operator>NE</operator>
+                                    <rightValue>Cancelada</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Obra__c.CancelarObra</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.EstadoObra__c}</leftValue>
+                                    <operator>NE</operator>
+                                    <rightValue>Cancelada</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>collapsed</name>
                     <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableActionsConfiguration</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableActionsInNative</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>hideChatterActions</name>
@@ -31,7 +96,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>hideUpdateButton</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>variant</name>
@@ -146,7 +211,7 @@
                     <name>uiBehavior</name>
                     <value>required</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.TipoObraEdificacion__c</fieldItem>
+                <fieldItem>Record.TipoObra__c</fieldItem>
                 <identifier>RecordTipoObraEdificacion_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -164,13 +229,40 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.SistemaConstructivo__c</fieldItem>
+                <identifier>RecordSistemaConstructivo_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.PotencialVentaInicial__c</fieldItem>
+                <identifier>RecordPotencialVentaInicial_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.PotencialVenta__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>0</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.PotencialEstimadoVenta__c</fieldItem>
+                <fieldItem>Record.PotencialVenta__c</fieldItem>
                 <identifier>RecordPotencialEstimadoVenta_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.PotencialEstimadoVenta__c}</leftValue>
+                        <leftValue>{!Record.PotencialVenta__c}</leftValue>
                         <operator>GT</operator>
                         <rightValue>0</rightValue>
                     </criteria>
@@ -251,7 +343,7 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.DireccionDetallada__c</fieldItem>
+                <fieldItem>Record.direccionDetallada__c</fieldItem>
                 <identifier>RecordDireccionDetallada_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -263,10 +355,10 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.ZonaTerritorioComercial__c</fieldItem>
-                <identifier>RecordZonaTerritorioComercial_cField</identifier>
+                <fieldItem>Record.Ruta__c</fieldItem>
+                <identifier>RecordRuta_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -317,99 +409,6 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.VentasDirectas__c</fieldItem>
-                <identifier>RecordVentasDirectas_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.VentasDirectas__c}</leftValue>
-                        <operator>GT</operator>
-                        <rightValue>0</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.VentasIndirectas__c</fieldItem>
-                <identifier>RecordVentasIndirectas_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.VentasIndirectas__c}</leftValue>
-                        <operator>GT</operator>
-                        <rightValue>0</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.VentasReferenciales__c</fieldItem>
-                <identifier>RecordVentasReferenciales_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.VentasReferenciales__c}</leftValue>
-                        <operator>GT</operator>
-                        <rightValue>0</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-77a06c7b-05ba-464e-bf66-8cdf080d06fb</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <name>Facet-76702193-e09c-4e63-bef5-d74cc4b1a4dc</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-77a06c7b-05ba-464e-bf66-8cdf080d06fb</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column5</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-76702193-e09c-4e63-bef5-d74cc4b1a4dc</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column6</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-fde996a5-8558-4a41-914d-bd6903928c0e</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.UnidadNegocioIngreso__c</fieldItem>
-                <identifier>RecordUnidadNegocioIngreso_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -538,24 +537,6 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection2</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-fde996a5-8558-4a41-914d-bd6903928c0e</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Montos Captados</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection3</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>

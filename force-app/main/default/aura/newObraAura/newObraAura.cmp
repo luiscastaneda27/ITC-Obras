@@ -2,6 +2,7 @@
     <aura:attribute name="userId" type="String" />
     <aura:attribute name="companyId" type="String" />
     <aura:attribute name="countryId" type="String" />
-    <aura:attribute name="result" type="Map" />
+    <aura:attribute name="gestorId" type="String" />
+    <aura:attribute name="result" type="List" />
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
 </aura:component>
