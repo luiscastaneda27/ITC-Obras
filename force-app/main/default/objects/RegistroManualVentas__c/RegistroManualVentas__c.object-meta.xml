@@ -143,23 +143,23 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <enableActivities>true</enableActivities>
+    <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Relación Obra</label>
+    <label>Registro Manual de Ventas</label>
     <nameField>
-        <displayFormat>RO-{0000}</displayFormat>
-        <label>Número de Relación Obra</label>
+        <displayFormat>RMV-{0000}</displayFormat>
+        <label>Número de Registro Manual de Ventas</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Relaciones  Obra</pluralLabel>
+    <pluralLabel>Registros Manuales de Ventas</pluralLabel>
     <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

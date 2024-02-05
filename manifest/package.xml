@@ -21,12 +21,15 @@
 		<name>CspTrustedSite</name>
 	</types>
     <types>
+        <members>Contact.NombreCuenta__c</members>
     	<members>ContactoObra__c.ContactoCliente__c</members>
 		<members>ContactoObra__c.ContactoProspecto__c</members>
 		<members>ContactoObra__c.NombreContacto__c</members>
 		<members>ContactoObra__c.NombreObra__c</members>
 		<members>ContactoObra__c.TipoContacto__c</members>
 		<members>ContactoObra__c.Tipo__c</members>
+        <members>contactoProspecto__c.NombreProspecto__c</members>
+		<members>ContactoObra__c.NombreCuentaProspecto__c</members>
         <members>Lead.canalDestino__c</members>
         <members>Lead.canal__c</members>
         <members>Lead.cargo__c</members>
@@ -71,15 +74,24 @@
         <members>Obra__c.VentasReferenciales__c</members>
         <members>Obra__c.ZonaTerritorioComercial__c</members>
         <members>Obra__c.direccionGeorreferenciada__c</members>
+        <members>Obra__c.PotencialVentaInicial__c</members>
+		<members>Obra__c.Potencial_semaforo__c</members>
+		<members>Obra__c.SistemaConstructivo__c</members>
+		<members>Obra__c.Ciudadname__c</members>
+		<members>Obra__c.Id_externo__c</members>
+		<members>Obra__c.Regionname__c</members>
+		<members>Obra__c.Viene_de_zapier__c</members>
+		<members>Obra__c.nueva_constructora__c</members>
+		<members>Obra__c.provincianame__c</members>
         <members>Quote.Obra__c</members>
-        <members>ReferenceSales__c.Amount__c</members>
-        <members>ReferenceSales__c.Company__c</members>
-        <members>ReferenceSales__c.Date__c</members>
-        <members>ReferenceSales__c.Obra__c</members>
-        <members>ReferenceSales__c.Supplier__c</members>
-        <members>ReferenceSales__c.ProductCode__c</members>
-        <members>ReferenceSales__c.ProductClassification__c</members>
-        <members>ReferenceSales__c.ProductSubclassification__c</members>
+        <members>Ventas_Referenciales__c.Amount__c</members>
+        <members>Ventas_Referenciales__c.Company__c</members>
+        <members>Ventas_Referenciales__c.Date__c</members>
+        <members>Ventas_Referenciales__c.Obra__c</members>
+        <members>Ventas_Referenciales__c.Supplier__c</members>
+        <members>Ventas_Referenciales__c.ProductCode__c</members>
+        <members>Ventas_Referenciales__c.ProductClassification__c</members>
+        <members>Ventas_Referenciales__c.ProductSubclassification__c</members>
         <members>RelacionObra__c.AccountName__c</members>
         <members>RelacionObra__c.Cuenta__c</members>
         <members>RelacionObra__c.LeadName__c</members>
@@ -87,10 +99,12 @@
         <members>RelacionObra__c.Prospecto__c</members>
         <members>RelacionObra__c.Relacion__c</members>
         <members>RelacionObra__c.Tipo__c</members>
+        <members>RelacionObra__c.Company__c</members>
+		<members>RelacionObra__c.TipoRelacion__c</members>
         <members>GenericAccountObras__mdt.AccountCode__c</members>
+        <members>Opportunity.NombreObra__c</members>
         <members>Quote.ObraCode__c</members>
         <members>Quote.Obra__c</members>
-        <members>RelacionObra__c.AccountName__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -104,9 +118,10 @@
     <types>
         <members>ContactoObra__c</members>
         <members>Obra__c</members>     
-        <members>ReferenceSales__c</members>
+        <members>Ventas_Referenciales__c</members>
         <members>RelacionObra__c</members>
         <members>GenericAccountObras__mdt</members>
+		<members>RegistroManualVentas__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -121,17 +136,22 @@
     </types>
     <types>
         <members>CreateQuoteFromObras</members>
+        <members>Creacionde_obra_externa</members>
         <members>SumQuotesByTypeEstimacion</members>
         <members>SumSalesReferencial</members>
 		<members>UpdateRelatedQuotesFromObra</members>
+		<members>RegistrarContactosObra</members>
+		<members>UpdateStatusObraFromButtonCancelar</members>
+		<members>semaforo_de_obra</members>
         <name>Flow</name>
     </types>
     <types>
         <members>ContactoObra__c-Contacto de Obra Layout</members>
         <members>Obra__c-Formato Obras</members>    
         <members>Lead-Inversionista</members>
-        <members>ReferenceSales__c-Ventas Referenciales Layout</members>
+        <members>Ventas_Referenciales__c-Ventas Referenciales Layout</members>
         <members>RelacionObra__c-Formato Relación Intaco</members>
+        <members>RegistroManualVentas__c-Ventas Referenciales Layout</members>
         <members>Opportunity-Estimación Layout</members>
         <members>Quote-Estimación Layout</members>
         <name>Layout</name>
@@ -155,7 +175,8 @@
 		<members>Obra__c.NuevoContactoObra</members>
         <members>Obra__c.ActualizarUbicacion</members>
         <members>Obra__c.Crear_Estimacion</members>
-        <members>Obra__c.NuevaVentaReferencial</members>      
+        <members>Obra__c.NuevaVentaReferencial</members>
+        <members>Obra__c.CrearPotencialVenta</members> 
         <name>QuickAction</name>
     </types>
     <types>
@@ -186,14 +207,16 @@
         <members>Obra__c.ValorNoValido</members>
         <members>Quote.NoEditarCotizacionEstimacion</members>
 		<members>Quote.validacionCambioEstadoSinPrecio</members>
-        <members>ReferenceSales__c.AmountLess</members>
-        <members>ReferenceSales__c.CompanyByObra</members>      
+        <members>Ventas_Referenciales__c.AmountLess</members>
+        <members>Ventas_Referenciales__c.CompanyByObra</members>      
         <members>RelacionObra__c.CuentaInvalida</members>
         <members>RelacionObra__c.RelacionInvalida</members>
         <name>ValidationRule</name>
     </types>
     <types>
         <members>Obra__c.NuevaVentaReferencial</members>
+        <members>Obra__c.NewRelationObra</members>
+		<members>Obra__c.NuevoRegistroManualVenta</members>
         <name>WebLink</name>
     </types>
     <types>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Tipo__c</fullName>
+    <fullName>NombreCuentaProspecto__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(ISBLANK(ContactoCliente__c),   ContactoProspecto__r.cargo__r.Name ,  ContactoCliente__r.cargo__r.Name )</formula>
+    <formula>IF(ISBLANK(ContactoCliente__c), ContactoProspecto__r.prospecto__r.FirstName &amp; &quot; &quot; &amp; ContactoProspecto__r.prospecto__r.LastName,  ContactoCliente__r.Account.Name )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Tipo</label>
+    <label>Nombre de Cuenta / Prospecto</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>

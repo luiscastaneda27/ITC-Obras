@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Cuenta__c</fullName>
+    <fullName>ProductCode__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>Cuenta</label>
+    <label>Código Producto</label>
     <lookupFilter>
         <active>true</active>
         <filterItems>
             <field>$Source.Company__c</field>
             <operation>equals</operation>
-            <valueField>Account.companias__c</valueField>
+            <valueField>Product2.compania__c</valueField>
         </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>
-    <referenceTo>Account</referenceTo>
-    <relationshipLabel>Relación  Obra</relationshipLabel>
-    <relationshipName>RelacionIntaco</relationshipName>
+    <referenceTo>Product2</referenceTo>
+    <relationshipName>Ventas_Referenciales_Producto</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>
