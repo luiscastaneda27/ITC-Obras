@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CompanyByObra</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND (
+Obra__r.Compania__r.codigoCompania__c !=  Company__r.codigoCompania__c 
+)</errorConditionFormula>
+    <errorDisplayField>Company__c</errorDisplayField>
+    <errorMessage>VR-0001 - Debes seleccionar la misma compañia de la Obra</errorMessage>
+</ValidationRule>
