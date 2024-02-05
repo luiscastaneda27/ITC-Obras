@@ -142,7 +142,6 @@
         <members>SumQuotesByTypeEstimacion</members>
         <members>SumSalesReferencial</members>
 		<members>UpdateRelatedQuotesFromObra</members>
-        <members>UpdateStatusObraFromButtonDeteccion</members>
 		<members>UpdateStatusObraFromButtonCancelar</members>
 		<members>UpdateStatusObra</members>
         <members>RegistrarContactosObra</members>
