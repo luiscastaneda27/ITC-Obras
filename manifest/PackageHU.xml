@@ -57,5 +57,9 @@
 		<members>RegistroManualVentas__c-Ventas Referenciales Layout</members>
 		<name>Layout</name>
 	</types>
+	<types>
+        <members>ProyectoObra</members>
+        <name>PermissionSet</name>
+    </types>
 	<version>58.0</version>
 </Package>
