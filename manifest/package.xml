@@ -5,6 +5,8 @@
         <members>NewObraController</members>
         <members>CurrentLocationController</members>
 		<members>CurrentLocationController_Test</members>
+        <members>NewObraController_Test</members>
+		<members>Opportunity_handler_Test</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -119,6 +121,9 @@
         <members>SumQuotesByTypeEstimacion</members>
         <members>SumSalesReferencial</members>
 		<members>UpdateRelatedQuotesFromObra</members>
+        <members>UpdateStatusObraFromButtonDeteccion</members>
+		<members>UpdateStatusObraFromButtonCancelar</members>
+		<members>UpdateStatusObra</members>
         <name>Flow</name>
     </types>
     <types>
@@ -146,6 +151,8 @@
         <name>Queue</name>
     </types>
     <types>
+        <members>Obra__c.IniciarLevantamiento</members>
+		<members>Obra__c.CancelarObra</members>  
         <members>Obra__c.NuevaRelacionObra</members>
 		<members>Obra__c.NuevoContactoObra</members>
         <members>Obra__c.ActualizarUbicacion</members>
@@ -189,6 +196,7 @@
     </types>
     <types>
         <members>Obra__c.NuevaVentaReferencial</members>
+        <members>Obra__c.NewRelationObra</members>
         <name>WebLink</name>
     </types>
     <types>

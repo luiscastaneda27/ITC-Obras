@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Inversionista__c</fullName>
-    <defaultValue>&apos;NO&apos;</defaultValue>
+    <defaultValue>&apos;SI&apos;</defaultValue>
     <externalId>false</externalId>
-    <label>Es Inversionista?</label>
+    <label>Es prospecto comercial?</label>
     <required>true</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
@@ -14,12 +14,12 @@
             <sorted>false</sorted>
             <value>
                 <fullName>SI</fullName>
-                <default>false</default>
+                <default>true</default>
                 <label>SI</label>
             </value>
             <value>
                 <fullName>NO</fullName>
-                <default>true</default>
+                <default>false</default>
                 <label>NO</label>
             </value>
         </valueSetDefinition>

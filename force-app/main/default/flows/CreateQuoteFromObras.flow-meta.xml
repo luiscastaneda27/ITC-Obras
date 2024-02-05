@@ -2,10 +2,10 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>59.0</apiVersion>
     <assignments>
-        <name>AssigmentIdObjectLead</name>
-        <label>AssigmentIdObjectLead</label>
-        <locationX>264</locationX>
-        <locationY>1106</locationY>
+        <name>AssignIdGenericAccount</name>
+        <label>Assign Id of Generic Account</label>
+        <locationX>182</locationX>
+        <locationY>890</locationY>
         <assignmentItems>
             <assignToReference>RecordISelected</assignToReference>
             <operator>Assign</operator>
@@ -14,7 +14,71 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Opportunity</targetReference>
+            <targetReference>getContacts</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assing_Actual_Quote_ID</name>
+        <label>Assing Actual Quote ID</label>
+        <locationX>50</locationX>
+        <locationY>1646</locationY>
+        <assignmentItems>
+            <assignToReference>actualQuoteId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>CreateActualQuote</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>GetRelatedQuoteLines</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assing_Cancel_Status_to_Previous_Quote</name>
+        <label>Assing Cancel Status to Previous Quote</label>
+        <locationX>50</locationX>
+        <locationY>1322</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Previous_Quote_Record.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Cancelada</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Stage_Previous_Quote</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assing_QLI</name>
+        <label>Assing Quote Line Items</label>
+        <locationX>138</locationX>
+        <locationY>1970</locationY>
+        <assignmentItems>
+            <assignToReference>Loop_over_Quote_Lines.QuoteId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>actualQuoteId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assing_Quote_Items_on_Collection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assing_Quote_Items_on_Collection</name>
+        <label>Assing Quote Items on Collection</label>
+        <locationX>138</locationX>
+        <locationY>2078</locationY>
+        <assignmentItems>
+            <assignToReference>quoteLineItems</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_over_Quote_Lines</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_over_Quote_Lines</targetReference>
         </connector>
     </assignments>
     <choices>
@@ -28,28 +92,28 @@
         <dataType>String</dataType>
     </choices>
     <decisions>
-        <name>SelectedObjectIs</name>
-        <label>SelectedObjectIs?</label>
-        <locationX>176</locationX>
-        <locationY>782</locationY>
+        <name>ObraHasOpportunity</name>
+        <label>Obra has an Opportunity</label>
+        <locationX>182</locationX>
+        <locationY>1106</locationY>
         <defaultConnector>
-            <targetReference>getCodeGenericAccount</targetReference>
+            <targetReference>Create_Opportunity</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Lead</defaultConnectorLabel>
+        <defaultConnectorLabel>No Opportunity Found</defaultConnectorLabel>
         <rules>
-            <name>AccountSelect</name>
+            <name>OpportunityExist</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>SearchAccounts.selectedChoiceValues</leftValueReference>
-                <operator>NotEqualTo</operator>
+                <leftValueReference>GetOpportunityRelatedObra</leftValueReference>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <stringValue></stringValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Create_Opportunity</targetReference>
+                <targetReference>Get_Previous_Quote_Record</targetReference>
             </connector>
-            <label>Account</label>
+            <label>Opportunity exist</label>
         </rules>
     </decisions>
     <dynamicChoiceSets>
@@ -107,53 +171,33 @@
         </outputAssignments>
         <valueField>Prospecto__c</valueField>
     </dynamicChoiceSets>
-    <dynamicChoiceSets>
-        <name>test</name>
-        <collectionReference>GetRelationshipIntaco</collectionReference>
-        <dataType>String</dataType>
-        <displayField>AccountName__c</displayField>
-        <object>RelacionObra__c</object>
-        <valueField>Cuenta__c</valueField>
-    </dynamicChoiceSets>
-    <dynamicChoiceSets>
-        <name>tests</name>
-        <dataType>String</dataType>
-        <displayField>LeadName__c</displayField>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Obra__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>GetInfoObra.Id</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Prospecto__c</field>
-            <operator>NotEqualTo</operator>
-            <value>
-                <stringValue></stringValue>
-            </value>
-        </filters>
-        <object>RelacionObra__c</object>
-        <valueField>Prospecto__c</valueField>
-    </dynamicChoiceSets>
     <environments>Default</environments>
     <formulas>
         <name>OppName</name>
         <dataType>String</dataType>
-        <expression>IF(ISBLANK({!SearchAccounts.selectedChoiceValues}), 
-&apos;Oportunidad - &apos;+{!GetGenericAccount.Name} + &apos; - &apos; + {!GetInfoObra.Name}, 
-&apos;Oportunidad - &apos;+{!SearchAccounts.selectedChoiceLabels} + &apos; - &apos; + {!GetInfoObra.Name})</expression>
+        <expression>&apos;Oportunidad - &apos;+{!GetGenericAccount.Name} + &apos; - &apos; + {!GetInfoObra.Name}</expression>
     </formulas>
     <formulas>
         <name>QuoteName</name>
         <dataType>String</dataType>
-        <expression>IF(ISBLANK({!SearchAccounts.selectedChoiceValues}), 
-&apos;Estimación - &apos;+{!GetGenericAccount.Name} + &apos; - &apos; + {!GetInfoObra.Name}, 
-&apos;Estimación - &apos;+{!SearchAccounts.selectedChoiceLabels} + &apos; - &apos; + {!GetInfoObra.Name})</expression>
+        <expression>&apos;Potencial de Venta - &apos; + {!GetInfoObra.Name} + &apos; - &apos; + TEXT(TODAY())</expression>
     </formulas>
     <interviewLabel>CreateQuoteFromObras {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Create Quote From Obra</label>
+    <loops>
+        <name>Loop_over_Quote_Lines</name>
+        <label>Loop over Quote Lines</label>
+        <locationX>50</locationX>
+        <locationY>1862</locationY>
+        <collectionReference>GetRelatedQuoteLines</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assing_QLI</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>create_Quote_Items</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -176,10 +220,10 @@
     <recordCreates>
         <name>Create_Opportunity</name>
         <label>Create Opportunity</label>
-        <locationX>176</locationX>
-        <locationY>1298</locationY>
+        <locationX>314</locationX>
+        <locationY>1214</locationY>
         <connector>
-            <targetReference>getContacts</targetReference>
+            <targetReference>CreateFirstQuote</targetReference>
         </connector>
         <inputAssignments>
             <field>AccountId</field>
@@ -203,6 +247,12 @@
             <field>Name</field>
             <value>
                 <elementReference>OppName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>NombreObra__c</field>
+            <value>
+                <elementReference>recordId</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -251,10 +301,94 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordCreates>
-        <name>Create_Quote</name>
-        <label>Create Quote</label>
-        <locationX>176</locationX>
-        <locationY>1514</locationY>
+        <name>create_Quote_Items</name>
+        <label>create Quote Items</label>
+        <locationX>50</locationX>
+        <locationY>2270</locationY>
+        <connector>
+            <targetReference>Get_Actual_Quote</targetReference>
+        </connector>
+        <inputReference>quoteLineItems</inputReference>
+    </recordCreates>
+    <recordCreates>
+        <name>CreateActualQuote</name>
+        <label>Create Actual Quote</label>
+        <locationX>50</locationX>
+        <locationY>1538</locationY>
+        <connector>
+            <targetReference>Assing_Actual_Quote_ID</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>ContactId</field>
+            <value>
+                <elementReference>getContacts.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ExpirationDate</field>
+            <value>
+                <elementReference>GetInfoObra.FechaFin__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>QuoteName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ObraCode__c</field>
+            <value>
+                <elementReference>GetInfoObra.CodigoObras__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Obra__c</field>
+            <value>
+                <elementReference>GetInfoObra.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>GetOpportunityRelatedObra.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Pricebook2Id</field>
+            <value>
+                <elementReference>Get_Previous_Quote_Record.Pricebook2Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>GetRecordTypeIdQuote.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>bodegaPedido__c</field>
+            <value>
+                <elementReference>GetInfoObra.Bodega__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>rutaRetiroN__c</field>
+            <value>
+                <elementReference>GetInfoObra.Ruta__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Quote</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>CreateFirstQuote</name>
+        <label>Create First Quote</label>
+        <locationX>314</locationX>
+        <locationY>1322</locationY>
+        <connector>
+            <targetReference>Get_First_Quote_Record</targetReference>
+        </connector>
         <inputAssignments>
             <field>ContactId</field>
             <value>
@@ -297,14 +431,91 @@
                 <elementReference>GetRecordTypeIdQuote.Id</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>bodegaPedido__c</field>
+            <value>
+                <elementReference>GetInfoObra.Bodega__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>rutaRetiroN__c</field>
+            <value>
+                <elementReference>GetInfoObra.Ruta__r.Id</elementReference>
+            </value>
+        </inputAssignments>
         <object>Quote</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
+        <name>Get_Actual_Quote</name>
+        <label>Get Actual Quote</label>
+        <locationX>50</locationX>
+        <locationY>2378</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>CreateActualQuoteSuccess</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>actualQuoteId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Quote</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_First_Quote_Record</name>
+        <label>Get First Quote Record</label>
+        <locationX>314</locationX>
+        <locationY>1430</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>CreateFirstQuoteSuccess</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>CreateFirstQuote</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Quote</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Previous_Quote_Record</name>
+        <label>Get Previous Quote Record</label>
+        <locationX>50</locationX>
+        <locationY>1214</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assing_Cancel_Status_to_Previous_Quote</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Obra__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>GetInfoObra.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Quote</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>getCodeGenericAccount</name>
         <label>getCodeGenericAccount</label>
-        <locationX>264</locationX>
-        <locationY>890</locationY>
+        <locationX>182</locationX>
+        <locationY>674</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>GetGenericAccount</targetReference>
@@ -324,11 +535,11 @@
     <recordLookups>
         <name>getContacts</name>
         <label>getContacts</label>
-        <locationX>176</locationX>
-        <locationY>1406</locationY>
+        <locationX>182</locationX>
+        <locationY>998</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Create_Quote</targetReference>
+            <targetReference>ObraHasOpportunity</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -345,11 +556,11 @@
     <recordLookups>
         <name>GetGenericAccount</name>
         <label>GetGenericAccount</label>
-        <locationX>264</locationX>
-        <locationY>998</locationY>
+        <locationX>182</locationX>
+        <locationY>782</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>AssigmentIdObjectLead</targetReference>
+            <targetReference>AssignIdGenericAccount</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -366,11 +577,11 @@
     <recordLookups>
         <name>GetInfoObra</name>
         <label>GetInfoObra</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>GetRelationshipIntaco</targetReference>
+            <targetReference>GetPriceBook</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -382,13 +593,38 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Obra__c</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>GetOpportunityRelatedObra</name>
+        <label>Get Opportunity Related to Obra</label>
+        <locationX>182</locationX>
+        <locationY>566</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>getCodeGenericAccount</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>NombreObra__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <name>GetPriceBook</name>
         <label>GetPriceBook</label>
-        <locationX>176</locationX>
-        <locationY>350</locationY>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>GetRecordTypeIdOpp</targetReference>
@@ -403,13 +639,15 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Pricebook2</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <name>GetRecordTypeIdOpp</name>
         <label>GetRecordTypeIdOpp</label>
-        <locationX>176</locationX>
-        <locationY>458</locationY>
+        <locationX>182</locationX>
+        <locationY>350</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>GetRecordTypeIdQuote</targetReference>
@@ -429,11 +667,11 @@
     <recordLookups>
         <name>GetRecordTypeIdQuote</name>
         <label>GetRecordTypeIdQuote</label>
-        <locationX>176</locationX>
-        <locationY>566</locationY>
+        <locationX>182</locationX>
+        <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>NewQuote</targetReference>
+            <targetReference>GetOpportunityRelatedObra</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -445,85 +683,77 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>RecordType</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <name>GetRelationshipIntaco</name>
-        <label>GetRelationshipIntaco</label>
-        <locationX>176</locationX>
-        <locationY>242</locationY>
+        <name>GetRelatedQuoteLines</name>
+        <label>Get Related Quote Lines</label>
+        <locationX>50</locationX>
+        <locationY>1754</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>GetPriceBook</targetReference>
+            <targetReference>Loop_over_Quote_Lines</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Obra__c</field>
+            <field>QuoteId</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>GetInfoObra.Id</elementReference>
+                <elementReference>Get_Previous_Quote_Record.Id</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>RelacionObra__c</object>
+        <object>QuoteLineItem</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>Update_Stage_Previous_Quote</name>
+        <label>Update Stage Previous Quote</label>
+        <locationX>50</locationX>
+        <locationY>1430</locationY>
+        <connector>
+            <targetReference>CreateActualQuote</targetReference>
+        </connector>
+        <inputReference>Get_Previous_Quote_Record</inputReference>
+    </recordUpdates>
     <screens>
-        <name>NewQuote</name>
-        <label>Crear Estimación</label>
-        <locationX>176</locationX>
-        <locationY>674</locationY>
-        <allowBack>true</allowBack>
+        <name>CreateActualQuoteSuccess</name>
+        <label>Create Actual Quote Success</label>
+        <locationX>50</locationX>
+        <locationY>2486</locationY>
+        <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
-        <backButtonLabel>Cancelar</backButtonLabel>
-        <connector>
-            <targetReference>SelectedObjectIs</targetReference>
-        </connector>
         <fields>
-            <name>NewQuote_Section1</name>
-            <fieldType>RegionContainer</fieldType>
-            <fields>
-                <name>NewQuote_Section1_Column1</name>
-                <fieldType>Region</fieldType>
-                <fields>
-                    <name>TitleScreen</name>
-                    <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;Selecciona una Cuenta para generar Estimación o haz click en Crear para generar Estimación a Cuenta Genérica&lt;/strong&gt;&lt;/p&gt;</fieldText>
-                    <fieldType>DisplayText</fieldType>
-                </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>12</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <isRequired>false</isRequired>
-            <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <name>SuccessMessageActualQuote</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(10, 124, 48);&quot;&gt;La cotización &lt;/span&gt;&lt;a href=&quot;/{!Get_Actual_Quote.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 18px; color: rgb(10, 124, 48);&quot;&gt;{!Get_Actual_Quote.Name}&lt;/a&gt;&lt;span style=&quot;font-size: 18px; color: rgb(10, 124, 48);&quot;&gt; fue creada exitosamente!&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
         </fields>
-        <fields>
-            <name>SearchAccounts</name>
-            <choiceReferences>Cuentas</choiceReferences>
-            <extensionName>flowruntime:choiceLookup</extensionName>
-            <fieldText>Cuentas</fieldText>
-            <fieldType>ComponentChoice</fieldType>
-            <inputParameters>
-                <name>placeholder</name>
-                <value>
-                    <stringValue>Seleccionar Cuenta</stringValue>
-                </value>
-            </inputParameters>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>false</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
-        <nextOrFinishButtonLabel>Crear</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>CreateFirstQuoteSuccess</name>
+        <label>Create First Quote Success</label>
+        <locationX>314</locationX>
+        <locationY>1538</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>SuccessMessageFirsQuote</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px; color: rgb(10, 124, 48);&quot;&gt;La cotización &lt;/span&gt;&lt;a href=&quot;/{!Get_First_Quote_Record.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 18px; color: rgb(10, 124, 48);&quot;&gt;{!Get_First_Quote_Record.Name}&lt;/a&gt;&lt;span style=&quot;font-size: 18px; color: rgb(10, 124, 48);&quot;&gt; fue creada exitosamente!&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>GetInfoObra</targetReference>
@@ -531,11 +761,26 @@
     </start>
     <status>Active</status>
     <variables>
+        <name>actualQuoteId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>NameAccountGeneric</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>quoteLineItems</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>QuoteLineItem</objectType>
     </variables>
     <variables>
         <name>recordId</name>

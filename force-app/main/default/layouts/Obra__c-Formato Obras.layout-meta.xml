@@ -18,7 +18,7 @@
                 <field>OwnerId</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Readonly</behavior>
                 <field>Compania__c</field>
             </layoutItems>
             <layoutItems>
@@ -45,6 +45,14 @@
                 <behavior>Required</behavior>
                 <field>M2Pared__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Etapa_del_Proyecto__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OrigenObra__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -53,7 +61,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>TipoObraEdificacion__c</field>
+                <field>TipoObra__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -61,14 +69,22 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>PotencialEstimadoVenta__c</field>
+                <field>SistemaConstructivo__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PotencialVentaInicial__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>PotencialVenta__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>ParticipacionVentas__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Readonly</behavior>
                 <field>EstadoObra__c</field>
             </layoutItems>
         </layoutColumns>
@@ -90,13 +106,13 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>DireccionDetallada__c</field>
+                <field>direccionDetallada__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>ZonaTerritorioComercial__c</field>
+                <behavior>Edit</behavior>
+                <field>Ruta__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -113,36 +129,10 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Montos Captados</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VentasDirectas__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VentasIndirectas__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VentasReferenciales__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns/>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
         <label>Datos Adicionales</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UnidadNegocioIngreso__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Readonly</behavior>
                 <field>UsuarioValidador__c</field>
             </layoutItems>
         </layoutColumns>
@@ -180,64 +170,49 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>Obra__c.NuevaRelacionObra</actionName>
+            <actionName>Obra__c.RegistrarContactoRelacionado</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>0</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Obra__c.NuevoContactoObra</actionName>
+            <actionName>Obra__c.IniciarLevantamiento</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>1</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Obra__c.Crear_Estimacion</actionName>
-            <actionType>QuickAction</actionType>
+            <actionName>NewRelationObra</actionName>
+            <actionType>CustomButton</actionType>
             <sortOrder>2</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>NuevaVentaReferencial</actionName>
-            <actionType>CustomButton</actionType>
+            <actionName>Obra__c.CrearPotencialVenta</actionName>
+            <actionType>QuickAction</actionType>
             <sortOrder>3</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>NuevoRegistroManualVenta</actionName>
+            <actionType>CustomButton</actionType>
+            <sortOrder>4</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>Obra__c.ActualizarUbicacion</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>4</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>NewEvent</actionName>
-            <actionType>QuickAction</actionType>
             <sortOrder>5</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>LogACall</actionName>
+            <actionName>Obra__c.CancelarObra</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>6</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>FeedItem.TextPost</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>7</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>FeedItem.ContentPost</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>8</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>Edit</actionName>
             <actionType>StandardButton</actionType>
-            <sortOrder>9</sortOrder>
+            <sortOrder>7</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>Delete</actionName>
             <actionType>StandardButton</actionType>
-            <sortOrder>10</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>NewTask</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>11</sortOrder>
+            <sortOrder>8</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
@@ -264,28 +239,31 @@
     </relatedLists>
     <relatedLists>
         <fields>QUOTE.NAME</fields>
-        <fields>OPPORTUNITY.NAME</fields>
         <fields>QUOTE.EXPIRATIONDATE</fields>
         <fields>QUOTE.TOTALPRICE</fields>
         <fields>QUOTE.STATUS</fields>
+        <fields>FechaCreacion__c</fields>
         <relatedList>Quote.Obra__c</relatedList>
+        <sortField>FechaCreacion__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <excludeButtons>New</excludeButtons>
+        <fields>Tipo__c</fields>
+        <fields>Cuenta__c</fields>
+        <fields>Prospecto__c</fields>
         <fields>NAME</fields>
         <fields>TipoRelacion__c</fields>
-        <fields>Relacion__c</fields>
-        <fields>Tipo__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>RelacionObra__c.Obra__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>TipoContacto__c</fields>
-        <fields>NombreContacto__c</fields>
+        <fields>ContactoCliente__c</fields>
+        <fields>ContactoProspecto__c</fields>
+        <fields>NombreCuentaProspecto__c</fields>
         <fields>Tipo__c</fields>
         <relatedList>ContactoObra__c.NombreObra__c</relatedList>
     </relatedLists>
@@ -297,10 +275,16 @@
         <fields>Amount__c</fields>
         <fields>ProductClassification__c</fields>
         <fields>ProductSubclassification__c</fields>
-        <relatedList>ReferenceSales__c.Obra__c</relatedList>
+        <relatedList>RegistroManualVentas__c.Obra__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>OPPORTUNITY.NAME</fields>
+        <fields>ACCOUNT.NAME</fields>
+        <fields>OPPORTUNITY.CLOSE_DATE</fields>
+        <relatedList>Opportunity.NombreObra__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
