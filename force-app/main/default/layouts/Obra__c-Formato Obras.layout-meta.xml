@@ -47,7 +47,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Etapa_del_Proyecto__c</field>
+                <field>EtapaProyecto__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -119,7 +119,7 @@
                 <field>Ciudad__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Bodega__c</field>
             </layoutItems>
         </layoutColumns>
@@ -185,34 +185,39 @@
             <sortOrder>2</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Obra__c.CrearPotencialVenta</actionName>
+            <actionName>Obra__c.NuevoContactoObra</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>3</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
+            <actionName>Obra__c.CrearPotencialVenta</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>4</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>NuevoRegistroManualVenta</actionName>
             <actionType>CustomButton</actionType>
-            <sortOrder>4</sortOrder>
+            <sortOrder>5</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>Obra__c.ActualizarUbicacion</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>5</sortOrder>
+            <sortOrder>6</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>Obra__c.CancelarObra</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>6</sortOrder>
+            <sortOrder>7</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>Edit</actionName>
             <actionType>StandardButton</actionType>
-            <sortOrder>7</sortOrder>
+            <sortOrder>8</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>Delete</actionName>
             <actionType>StandardButton</actionType>
-            <sortOrder>8</sortOrder>
+            <sortOrder>9</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
@@ -256,6 +261,7 @@
         <fields>NAME</fields>
         <fields>TipoRelacion__c</fields>
         <fields>CREATED_DATE</fields>
+        <fields>LeadName__c</fields>
         <relatedList>RelacionObra__c.Obra__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -265,6 +271,7 @@
         <fields>ContactoProspecto__c</fields>
         <fields>NombreCuentaProspecto__c</fields>
         <fields>Tipo__c</fields>
+        <fields>NAME</fields>
         <relatedList>ContactoObra__c.NombreObra__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -281,10 +288,21 @@
         <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>Date__c</fields>
+        <fields>Goal_of_the_visit__c</fields>
+        <fields>Type__c</fields>
+        <relatedList>Visit_Report__c.Obra__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>OPPORTUNITY.NAME</fields>
         <fields>ACCOUNT.NAME</fields>
         <fields>OPPORTUNITY.CLOSE_DATE</fields>
         <relatedList>Opportunity.NombreObra__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Ventas_Referenciales__c.Obra__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
@@ -292,7 +310,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hOu0000003v3N</masterLabel>
+        <masterLabel>00hRt000000g2tR</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
