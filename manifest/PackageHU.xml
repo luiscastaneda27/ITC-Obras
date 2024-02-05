@@ -1,37 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-		<members>Quote.Obra__c</members>
+		<members>Contact.NombreCuenta__c</members>
+		<members>Opportunity.NombreObra__c</members>
+		<members>contactoProspecto__c.NombreProspecto__c</members>
 		<members>ContactoObra__c.ContactoCliente__c</members>
 		<members>ContactoObra__c.ContactoProspecto__c</members>
-		<members>ContactoObra__c.NombreContacto__c</members>
+		<members>ContactoObra__c.NombreCuentaProspecto__c</members>
 		<members>ContactoObra__c.NombreObra__c</members>
-		<members>ContactoObra__c.TipoContacto__c</members>
 		<members>ContactoObra__c.Tipo__c</members>
+		<members>Obra__c.PotencialVentaInicial__c</members>
+		<members>Obra__c.Potencial_semaforo__c</members>
+		<members>Obra__c.SistemaConstructivo__c</members>
+		<members>Obra__c.Ciudadname__c</members>
+		<members>Obra__c.Id_externo__c</members>
+		<members>Obra__c.Regionname__c</members>
+		<members>Obra__c.Viene_de_zapier__c</members>
+		<members>Obra__c.nueva_constructora__c</members>
+		<members>Obra__c.provincianame__c</members>
+		<members>RelacionObra__c.AccountName__c</members>
+		<members>RelacionObra__c.Company__c</members>
+		<members>RelacionObra__c.Cuenta__c</members>
+		<members>RelacionObra__c.Estado_obra__c</members>
+		<members>RelacionObra__c.LeadName__c</members>
+		<members>RelacionObra__c.Obra__c</members>
+		<members>RelacionObra__c.Prospecto__c</members>
+		<members>RelacionObra__c.Relacion__c</members>
+		<members>RelacionObra__c.TipoRelacion__c</members>
+		<members>RelacionObra__c.Tipo__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
-		<members>ContactoObra__c-Contacto de Obra Layout</members>
-		<members>Obra__c-Formato Obras</members>
-		<name>Layout</name>
-	</types>
-	<types>
-		<members>ContactoObra__c.ContactoUnico</members>
-		<members>ContactoObra__c.IngresoIncompleto</members>
-		<name>ValidationRule</name>
-	</types>
-	<types>
 		<members>ContactoObra__c</members>
+		<members>RegistroManualVentas__c</members>
+		<members>RelacionObra__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
-		<members>Obra__c.NuevaRelacionObra</members>
+		<members>Creacionde_obra_externa</members>
+		<members>RegistrarContactosObra</members>
+		<members>UpdateStatusObraFromButtonCancelar</members>
+		<members>semaforo_de_obra</members>
+		<name>Flow</name>
+	</types>
+	<types>
+		<members>Obra__c.CrearPotencialVenta</members>
 		<members>Obra__c.NuevoContactoObra</members>
 		<name>QuickAction</name>
 	</types>
 	<types>
-		<members>ProyectoObra</members>
-		<name>PermissionSet</name>
+		<members>Obra__c.NewRelationObra</members>
+		<members>Obra__c.NuevoRegistroManualVenta</members>
+		<name>WebLink</name>
+	</types>
+	<types>
+		<members>RegistroManualVentas__c-Ventas Referenciales Layout</members>
+		<name>Layout</name>
 	</types>
 	<version>58.0</version>
 </Package>

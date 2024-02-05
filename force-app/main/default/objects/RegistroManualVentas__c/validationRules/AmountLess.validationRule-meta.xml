@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AmountLess</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ Amount__c &lt;= 0
+)</errorConditionFormula>
+    <errorMessage>VR-0002 - El monto debe ser mayor a 0</errorMessage>
+</ValidationRule>
