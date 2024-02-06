@@ -78,6 +78,8 @@ private class Opportunity_handler_Test {
             bodegaDeDespacho__c = b.Id
         );
         insert op; 
+
+		
         
         Id recordTypeId2 = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName().get('Estimacion').getRecordTypeId();
         Opportunity op2 = new Opportunity(
@@ -196,7 +198,7 @@ private class Opportunity_handler_Test {
         Opportunity op3 = new Opportunity(
             StageName = 'Análisis',
             CloseDate = system.today().addDays(30),
-            Name = 'Estimacion Obras',
+            Name = 'Estimacion Obras.',
             recordTypeId = recordTypeId3,
             compania__c = c.Id,
             pais__c = udcDetalladaPaisEC.Id,
@@ -230,12 +232,35 @@ private class Opportunity_handler_Test {
             proyectoRelacionado__c = proyecto.Id
         );
         insert op5; 
+        Quote cotizacion = new Quote(
+            Name = 'Test cotizacion',
+            OpportunityId = op.Id,
+            pricebook2Id  = pricebookId
+        );
+        insert cotizacion;
+
+        QuoteLineItem partidasCotizacion = new QuoteLineItem(
+            Quantity = 12,
+            UnitPrice = 12, 
+            pricebookEntryId = pbE.Id,
+            Product2Id = p.Id,
+            QuoteId = cotizacion.Id,
+            cantidadLWC__c = 2,
+            etapaConstructiva__c = 'Pisos'
+        );
+        insert partidasCotizacion;
+
+       
+ 
     }
     @isTest
     private static void ejectutarCreacionOportunidad(){
-        Opportunity oportunidad = [Select id, StageName from Opportunity LIMIT 1];
-     
+        Opportunity oportunidad = [Select id, StageName from Opportunity where name = 'Estimacion Obras.' LIMIT 1];
+     	Quote quote = [Select id from Quote  LIMIT 1];
+
          oportunidad.StageName = 'En proceso';
+		 oportunidad.SyncedQuoteId = quote.Id;  
+         oportunidad.cantidadConveniosAsignadosAux__c  = 1;
 		 update oportunidad; 
         
     }

@@ -1,43 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-        <members>NewObraController</members>
-		<members>NewObraController_Test</members>
 		<members>Opportunity_handler_Test</members>
         <name>ApexClass</name>
-    </types>
-	<types>
-		<members>newObraAura</members>
-		<name>AuraDefinitionBundle</name>
-	</types>
-	<types>
-        <members>ObraPaginaRegistro</members> 
-		<members>prospectoPaginaRegistro</members>   
-        <name>FlexiPage</name>
-    </types>
-	<types>
-		<members>Lead.Inversionista__c</members>
-		<name>CustomField</name>
-	</types>
-	<types>
-        <members>CreateQuoteFromObras</members>
-		<members>UpdateStatusObraFromButtonDeteccion</members>
-		<members>UpdateStatusObraFromButtonCancelar</members>
-		<members>UpdateStatusObra</members>
-        <name>Flow</name>
-    </types>
-	<types>
-        <members>Obra__c-Formato Obras</members>
-        <name>Layout</name>
-    </types>
-	<types>
-        <members>Obra__c.IniciarLevantamiento</members>
-		<members>Obra__c.CancelarObra</members>  
-        <name>QuickAction</name>
-    </types>
-	<types>
-        <members>Obra__c.NewRelationObra</members>
-        <name>WebLink</name>
     </types>
 	<version>58.0</version>
 </Package>
