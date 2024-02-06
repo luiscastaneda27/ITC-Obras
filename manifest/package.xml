@@ -52,7 +52,7 @@
         <members>Obra__c.Compania__c</members>
         <members>Obra__c.CurrentLocation__c</members>
         <members>Obra__c.DetalleObra__c</members>
-        <members>Obra__c.DireccionDetallada__c</members>
+        <members>Obra__c.direccionDetallada__c</members>
         <members>Obra__c.EstadoObra__c</members>
         <members>Obra__c.FechaFin__c</members>
         <members>Obra__c.FechaInicio__c</members>
@@ -86,14 +86,6 @@
 		<members>Obra__c.nueva_constructora__c</members>
 		<members>Obra__c.provincianame__c</members>
         <members>Quote.Obra__c</members>
-        <members>Ventas_Referenciales__c.Amount__c</members>
-        <members>Ventas_Referenciales__c.Company__c</members>
-        <members>Ventas_Referenciales__c.Date__c</members>
-        <members>Ventas_Referenciales__c.Obra__c</members>
-        <members>Ventas_Referenciales__c.Supplier__c</members>
-        <members>Ventas_Referenciales__c.ProductCode__c</members>
-        <members>Ventas_Referenciales__c.ProductClassification__c</members>
-        <members>Ventas_Referenciales__c.ProductSubclassification__c</members>
         <members>RelacionObra__c.AccountName__c</members>
         <members>RelacionObra__c.Cuenta__c</members>
         <members>RelacionObra__c.LeadName__c</members>
@@ -120,7 +112,6 @@
     <types>
         <members>ContactoObra__c</members>
         <members>Obra__c</members>     
-        <members>Ventas_Referenciales__c</members>
         <members>RelacionObra__c</members>
         <members>GenericAccountObras__mdt</members>
 		<members>RegistroManualVentas__c</members>
@@ -140,7 +131,7 @@
         <members>CreateQuoteFromObras</members>
         <members>Creacionde_obra_externa</members>
         <members>SumQuotesByTypeEstimacion</members>
-        <members>SumSalesReferencial</members>
+        <!--members>SumSalesReferencial</members-->
 		<members>UpdateRelatedQuotesFromObra</members>
 		<members>UpdateStatusObraFromButtonCancelar</members>
 		<members>UpdateStatusObra</members>
@@ -152,7 +143,6 @@
         <members>ContactoObra__c-Contacto de Obra Layout</members>
         <members>Obra__c-Formato Obras</members>    
         <members>Lead-Inversionista</members>
-        <members>Ventas_Referenciales__c-Ventas Referenciales Layout</members>
         <members>RelacionObra__c-Formato Relación Intaco</members>
         <members>RegistroManualVentas__c-Ventas Referenciales Layout</members>
         <members>Opportunity-Estimación Layout</members>
@@ -180,7 +170,6 @@
 		<members>Obra__c.NuevoContactoObra</members>
         <members>Obra__c.ActualizarUbicacion</members>
         <members>Obra__c.Crear_Estimacion</members>
-        <members>Obra__c.NuevaVentaReferencial</members>
         <members>Obra__c.CrearPotencialVenta</members> 
         <name>QuickAction</name>
     </types>
@@ -211,9 +200,7 @@
         <members>Obra__c.FechaInvalida</members>
         <members>Obra__c.ValorNoValido</members>
         <members>Quote.NoEditarCotizacionEstimacion</members>
-		<members>Quote.validacionCambioEstadoSinPrecio</members>
-        <members>Ventas_Referenciales__c.AmountLess</members>
-        <members>Ventas_Referenciales__c.CompanyByObra</members>      
+		<members>Quote.validacionCambioEstadoSinPrecio</members>   
         <members>RelacionObra__c.CuentaInvalida</members>
         <members>RelacionObra__c.RelacionInvalida</members>
         <name>ValidationRule</name>
