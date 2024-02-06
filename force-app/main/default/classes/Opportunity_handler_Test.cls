@@ -177,7 +177,7 @@ private class Opportunity_handler_Test {
         Proyectos__c proyecto = new Proyectos__c(
             Name = 'Proyecto de prueba',
             etapaDelProyecto__c = 'En Proceso',
-            tipoObraEdificacion__c = 'Casas',
+            tipoObraEdificacion__c = 'Residencial',
             tipoIdentificacionFiscal__c = fiscal.id,
             metrosCuadrados__c =  13,
             numeroIdentificacionFiscal__c = '2122',
