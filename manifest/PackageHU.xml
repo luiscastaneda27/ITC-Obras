@@ -99,6 +99,7 @@
         <members>Opportunity.NombreObra__c</members>
         <members>Quote.ObraCode__c</members>
         <members>Quote.Obra__c</members>
+		<members>Quote.FechaCreacion__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -161,6 +162,7 @@
         <members>RTCostaRica</members>
         <members>RTRegionNorte</members>
         <members>RTRegionSur</members>
+		<members>ProyectosRSur</members>
         <name>Queue</name>
     </types>
     <types>
