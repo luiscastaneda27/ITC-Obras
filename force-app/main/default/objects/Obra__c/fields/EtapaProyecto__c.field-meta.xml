@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EtapaProyecto__c</fullName>
+    <externalId>false</externalId>
+    <label>Etapa del proyecto</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Movimiento de tierra</fullName>
+                <default>false</default>
+                <label>Movimiento de tierra</label>
+            </value>
+            <value>
+                <fullName>Cimentaciones</fullName>
+                <default>false</default>
+                <label>Cimentaciones</label>
+            </value>
+            <value>
+                <fullName>Estructura</fullName>
+                <default>false</default>
+                <label>Estructura</label>
+            </value>
+            <value>
+                <fullName>Mampostería</fullName>
+                <default>false</default>
+                <label>Mampostería</label>
+            </value>
+            <value>
+                <fullName>Enlucido</fullName>
+                <default>false</default>
+                <label>Enlucido</label>
+            </value>
+            <value>
+                <fullName>Enchapado</fullName>
+                <default>false</default>
+                <label>Enchapado</label>
+            </value>
+            <value>
+                <fullName>Nivelación de piso</fullName>
+                <default>false</default>
+                <label>Nivelación de piso</label>
+            </value>
+            <value>
+                <fullName>Empaste</fullName>
+                <default>false</default>
+                <label>Empaste</label>
+            </value>
+            <value>
+                <fullName>Revestimientos</fullName>
+                <default>false</default>
+                <label>Revestimientos</label>
+            </value>
+            <value>
+                <fullName>Remodelación/reparación</fullName>
+                <default>false</default>
+                <label>Remodelación/reparación</label>
+            </value>
+            <value>
+                <fullName>Impermeabilización</fullName>
+                <default>false</default>
+                <label>Impermeabilización</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

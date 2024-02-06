@@ -164,7 +164,7 @@
         <name>Queue</name>
     </types>
     <types>
-        <members>Obra__c.IniciarLevantamiento</members>
+        <!--members>Obra__c.IniciarLevantamiento</members-->
 		<members>Obra__c.CancelarObra</members>  
         <members>Obra__c.NuevaRelacionObra</members>
 		<members>Obra__c.NuevoContactoObra</members>
