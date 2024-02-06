@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EstadoInvalidoEjecutada</fullName>
-    <active>true</active>
+    <active>false</active>
     <description>Regla de validación que impide el cambio de estado inválido para el valor Ejecutada.</description>
     <errorConditionFormula>AND(
 ISPICKVAL(PRIORVALUE(EstadoObra__c),&apos;Ejecutada&apos;),

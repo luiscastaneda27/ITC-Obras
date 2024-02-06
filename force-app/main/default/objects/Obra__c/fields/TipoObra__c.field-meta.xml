@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TipoObra__c</fullName>
+    <externalId>false</externalId>
+    <label>Tipo de Obra</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Residencia</fullName>
+                <default>false</default>
+                <label>Residencia</label>
+            </value>
+            <value>
+                <fullName>Comercial</fullName>
+                <default>false</default>
+                <label>Comercial</label>
+            </value>
+            <value>
+                <fullName>Industrial</fullName>
+                <default>false</default>
+                <label>Industrial</label>
+            </value>
+            <value>
+                <fullName>Infraestructura</fullName>
+                <default>false</default>
+                <label>Infraestructura</label>
+            </value>
+            <value>
+                <fullName>Edificio</fullName>
+                <default>false</default>
+                <label>Edificio</label>
+            </value>
+            <value>
+                <fullName>Conjunto</fullName>
+                <default>false</default>
+                <label>Conjunto</label>
+            </value>
+            <value>
+                <fullName>Unidad Educativa</fullName>
+                <default>false</default>
+                <label>Unidad Educativa</label>
+            </value>
+            <value>
+                <fullName>Centro Comercial</fullName>
+                <default>false</default>
+                <label>Centro Comercial</label>
+            </value>
+            <value>
+                <fullName>Local Comercial</fullName>
+                <default>false</default>
+                <label>Local Comercial</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

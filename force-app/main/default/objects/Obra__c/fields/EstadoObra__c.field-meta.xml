@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <label>Estado de la Obra</label>
     <required>false</required>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
@@ -15,16 +15,6 @@
                 <fullName>Levantamiento / Validación de Información</fullName>
                 <default>true</default>
                 <label>Levantamiento / Validación de Información</label>
-            </value>
-            <value>
-                <fullName>Detección</fullName>
-                <default>false</default>
-                <label>Detección</label>
-            </value>
-            <value>
-                <fullName>Estimación</fullName>
-                <default>false</default>
-                <label>Estimación</label>
             </value>
             <value>
                 <fullName>En Proceso</fullName>
@@ -40,6 +30,18 @@
                 <fullName>Cancelada</fullName>
                 <default>false</default>
                 <label>Cancelada</label>
+            </value>
+            <value>
+                <fullName>Detección</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Detección</label>
+            </value>
+            <value>
+                <fullName>Estimación</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Estimación</label>
             </value>
         </valueSetDefinition>
     </valueSet>
