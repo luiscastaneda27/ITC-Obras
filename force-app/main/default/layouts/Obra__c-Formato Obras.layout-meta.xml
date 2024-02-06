@@ -175,11 +175,6 @@
             <sortOrder>0</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Obra__c.IniciarLevantamiento</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>1</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>NewRelationObra</actionName>
             <actionType>CustomButton</actionType>
             <sortOrder>2</sortOrder>
