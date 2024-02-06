@@ -100,6 +100,7 @@
         <members>Quote.ObraCode__c</members>
         <members>Quote.Obra__c</members>
 		<members>Quote.FechaCreacion__c</members>
+		<members>Visit_Report__c.Obra__c</members>
         <name>CustomField</name>
     </types>
     <types>
